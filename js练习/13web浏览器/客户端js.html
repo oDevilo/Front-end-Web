@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="toBaidu()">百度</button>
+<button onclick="timeAlert()">定时</button>
+<br/>
+<a href="javascript:new Date().toLocaleTimeString();">时间1</a>
+<a href="javascript:alert(new Date().toLocaleTimeString());">时间2</a>
+<a href="javascript:void window.open('about:blank');">打开一个窗口</a>
+
+<script>
+
+    function toBaidu() {
+        window.location = "http://www.baidu.com";
+    }
+
+    function timeAlert() {
+        setTimeout(function () {
+            alert("两秒");
+        }, 2000);
+    }
+
+</script>
+</body>
+</html>

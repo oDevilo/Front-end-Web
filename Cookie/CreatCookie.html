@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function setCookie(cookieName, cookieValue, cookiePath, cookieExpires){
+//            cookieValue=escape(cookieValue);
+            if (cookieExpires==""){
+                var nowDate=new Date();
+                nowDate.setMonth(nowDate.getMonth()+6);
+                cookieExpires=nowDate.toUTCString();
+            }
+            if (cookiePath!=""){
+                cookiePath=";Path="+cookiePath;
+            }
+            document.cookie=cookieName+"="+cookieValue+";expires="+cookieExpires
+                    +cookiePath;
+        }
+        setCookie("name","bob","","");
+        setCookie("age","100","","");
+        setCookie("FirsetVisit","10 May 2007","","");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

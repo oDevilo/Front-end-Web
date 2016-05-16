@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="alert1()">alert</button>
+<button onclick="confirm1()">confirm1</button>
+<button onclick="prompt1()">prompt1</button>
+<button onclick="showModalDialog1()">showModalDialog1</button>
+
+<script>
+    function alert1() {
+        //警告框
+        alert("alertt");
+    }
+    function confirm1() {
+        //确认或取消
+        confirm("confirm1");
+    }
+    function prompt1() {
+        //输入框
+        prompt("prompt1")
+    }
+    function showModalDialog1() {
+        //谷歌目前版本已经不支持此方法showModalDialog
+        /**
+         *showModalDialog（”打开窗口的url”，”窗口名”，”窗口特征”）
+
+         窗口的特征如下，可以任意组合：
+         height： 窗口高度；
+         width： 窗口宽度；
+         top： 窗口距离屏幕上方的象素值；
+         left：窗口距离屏幕左侧的象素值；
+         toolbar： 是否显示工具栏，yes为显示；
+         menubar，scrollbars 表示菜单栏和滚动栏。
+         resizable： 是否允许改变窗口大小，yes或1为允许
+         location： 是否显示地址栏，yes或1为允许
+         status：是否显示状态栏内的信息，yes或1为允许
+         */
+        if(navigator.userAgent.indexOf("Chrome") >0 ){
+            window.open(
+                    "showModalDialog.html",
+                    ["输入3D数据","x"],
+                    "dialogwidth:400;dialogheight:300;resizable:yes;")
+        }else{
+            //showModalDialog在浏览器当前窗口中显示一个模态窗口
+            //1.URL,2.任意值，3.非标准的列表，如果提供这个参数，可配置尺寸和其他属性
+            //此方法在窗口关闭前不会返回
+            //resizable=yes 可以改变大小 dialogwidth dialogheight 窗口大小
+            showModalDialog(
+                    "showModalDialog.html",
+                    ["输入3D数据","x"],
+                    "dialogwidth:400;dialogheight:300;resizable:yes;status:no;location:no");
+        }
+
+    }
+</script>
+</body>
+</html>

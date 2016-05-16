@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var currentImgNumber=1;
+        var numberOfImages=3;
+        function window_onload(){
+            setTimeout("switchImage()",3000);
+        }
+        function switchImage(){
+            currentImgNumber++;
+            document.imgAdvert.src=currentImgNumber+'.jpg';
+            if(currentImgNumber<numberOfImages){
+                setTimeout("switchImage()",2000);
+            }
+            if(currentImgNumber==3){
+                currentImgNumber==1;
+                setTimeout("switchImage()",2000);
+            }
+        }
+    </script>
+</head>
+<body onload="window_onload()">
+<img src="1.jpg" name="imgAdvert" style="width: 100px;height: 100px"/>
+</body>
+</html>

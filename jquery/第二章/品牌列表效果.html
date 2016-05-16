@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>品牌列表</title>
+    <script type="text/javascript" src="jquery-1.10.2.js"></script>
+    <style type="text/css">
+        *{ margin:0; padding:0;}
+        body {font-size:12px;text-align:center;}
+        a { color:#04D; text-decoration:none;}
+        a:hover { color:#F50; text-decoration:underline;}
+        .SubCategoryBox {width:600px; margin:0 auto; text-align:center;margin-top:40px;}
+        .SubCategoryBox ul { list-style:none;}
+        .SubCategoryBox ul li { display:block; float:left; width:200px; line-height:20px;}
+        .showmore { clear:both; text-align:center;padding-top:10px;}
+        .showmore a { display:block; width:120px; margin:0 auto; line-height:24px; border:1px solid #AAA;}
+        .showmore a span { padding-left:15px; background:url(img/down.gif) no-repeat 0 0;}
+        .promoted a { color:#F50;}
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            //获取ul下索引大于5的元素集合，并去掉集合中最后一个元素
+            var $category=$('ul li:gt(5):not(:last)');
+            $category.hide();   //隐藏上面对象
+
+            var $toggleBtn=$('div.showmore>a'); //获取显示全部按钮
+            $toggleBtn.click(function(){
+                if($category.is(":visible")){
+                    //隐藏元素是显示的，点击就是隐藏
+                    $category.hide();
+                    //下面将 显示全部 改为 精简显示
+                    $('.showmore a span')
+                            .css("background","url(img/up.gif) no-repeat 0 0")
+                            .text("全部显示品牌");
+                }else{
+                    //隐藏元素是隐藏的，点击就是显示
+                    $category.show();
+                    //下面将 显示全部 改为 精简显示
+                    $('.showmore a span')
+                            .css("background","url(img/up.gif) no-repeat 0 0")
+                            .text("精简显示品牌");
+                }
+                return false;       //链接不跳转
+            });
+
+
+            //高亮推荐品牌 红色显示
+            $('ul li').filter(":contains('三星'),:contains('索尼')")
+                    .addClass("promoted");
+
+
+        });
+    </script>
+</head>
+<body>
+<div class="SubCategoryBox">
+    <ul>
+        <li ><a href="#">佳能</a><i>(30440) </i></li>
+        <li ><a href="#">索尼</a><i>(27220) </i></li>
+        <li ><a href="#">三星</a><i>(20808) </i></li>
+        <li ><a href="#">尼康</a><i>(17821) </i></li>
+        <li ><a href="#">松下</a><i>(12289) </i></li>
+        <li ><a href="#">卡西欧</a><i>(8242) </i></li>
+        <li ><a href="#">富士</a><i>(14894) </i></li>
+        <li ><a href="#">柯达</a><i>(9520) </i></li>
+        <li ><a href="#">宾得</a><i>(2195) </i></li>
+        <li ><a href="#">理光</a><i>(4114) </i></li>
+        <li ><a href="#">奥林巴斯</a><i>(12205) </i></li>
+        <li ><a href="#">明基</a><i>(1466) </i></li>
+        <li ><a href="#">爱国者</a><i>(3091) </i></li>
+        <li ><a href="#">其它品牌相机</a><i>(7275) </i></li>
+    </ul>
+    <div class="showmore">
+        <a href="more.html"><span>显示全部品牌</span></a>
+    </div>
+</div>
+</body>
+</html>

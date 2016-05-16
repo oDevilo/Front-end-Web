@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p lang="fx">tttt</p>
+<a name="x">sdfsd</a>
+<a id="x">dsdfs</a>
+<button name="x">butt</button>
+
+<script>
+    console.log(document.all[0]);   //第一个document元素
+    console.log(document.all["x"]);//id或name为x的元素
+    console.log(document.all.x);    //同上
+    console.log(document.all.tags("a"));    //不支持
+    console.log(document.all.tag("p")[0]);
+</script>
+</body>
+</html>

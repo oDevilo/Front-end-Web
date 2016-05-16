@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var myImages=new Array("1.jpg","2.jpg","3.jpg","4.jpg");
+        function changImg(that){
+            var newImgNumber=Math.round(Math.random()*3);
+            while(that.src.indexOf(myImages[newImgNumber])!=-1){
+                newImgNumber=Math.round(Math.random()*3);
+            }
+            that.src=myImages[newImgNumber];
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <img src="1.jpg" border="0" name="img0" onclick="changImg(this)"/>
+    <img src="1.jpg" border="0" name="img1" onclick="changImg(this)"/>
+</body>
+</html>

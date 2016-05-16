@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function butCalculate_onclick(){
+            try{
+                if (window.top.calcFactorial==null)
+                    throw  "this page is not loaded within the correct frameset";
+                if (document.form1.txtNum1.value=="")
+                    throw "!Please enter a value before you calculate its factorial";
+                if (isNaN(document.form1.txtNum1.value)){
+                    throw "!please enter avalid number";
+                }
+                if (document.form1.txtNum1.value<0){
+                    throw "!please enter a positive number";
+                }
+                document.form1.txtResult.value=
+                        window.parent.calcFactorial(document.form1.txtNum1.value);
+            }
+            catch (e){
+                if (typeof (e)=="string"){
+                    if(e.charAt(0)=="!"){
+                        alert(e.substr(1));
+                        document.form1.txtNum1.focus();
+                        document.form1.txtNum1.select();
+                    }else{
+                    alert(e);
+                    }
+                }
+                else {
+                alert("the following error "+ e.message);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<form action=" " name="form1">
+    <input type="text" name="txtNum1" size="3"/>factorial is
+    <input type="text" name="txtResult" size="25"/><br/>
+    <input type="button" value="calcFactorial" name="butCalculate" onclick="butCalculate_onclick()"/>
+</form>
+</body>
+</html>

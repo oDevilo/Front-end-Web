@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function window_onload(){
+            alert("The name of the upper frame's window object is "+
+                    window.name);
+            alert("The location of upperWindow's parent is "+
+                    window.parent.location.href);
+        }
+    </script>
+</head>
+<body onload="window_onload()">
+<p>
+    upper Frame
+</p>
+</body>
+</html>

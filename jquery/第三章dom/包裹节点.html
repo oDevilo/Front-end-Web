@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom</title>
+    <script src="../jq/jquery-1.10.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //1.wrap()将元素单独包裹
+//            $("strong").wrap("<p></p>");
+           //2.wrapAll()将所有匹配元素用一个元素包裹
+//            $("strong").wrapAll("<p></p>");
+            //3.wraplnner()将每一个匹配的元素的子内容包裹
+            $("strong").wrapInner("<font style='color: #FF5500'></font>")
+        });
+    </script>
+</head>
+<body>
+<strong title="选择你最喜欢的水果.">你最喜欢的水果是？</strong>
+<strong title="选择你最喜欢的水果.">你最喜欢的水果是？</strong>
+    <ul>
+        <li title="苹果">苹果</li>
+        <li title="橘子">橘子</li>
+        <li title="菠萝">菠萝</li>
+    </ul>
+</body>
+</html>

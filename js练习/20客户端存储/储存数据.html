@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //判断是否支持本地存储
+    if (window.localStorage) {
+        alert('This browser supports localStorage');
+    } else {
+        alert('This browser does NOT support localStorage');
+    }
+
+
+    localStorage.a = 3;//设置a为"3"
+    console.log(localStorage.a);
+    localStorage["a"] = "sfsf";//设置a为"sfsf"，覆盖上面的值
+    console.log(localStorage.a);
+    localStorage.setItem("b", "isaac");//设置b为"isaac"
+    console.log(localStorage.b);
+    console.log(localStorage.getItem("b"));//获取b的值
+    localStorage.removeItem("b");//清除c的值
+    console.log(localStorage.b);
+
+    /**
+     * localStorage和sessionStorage语法相同
+     * 区别就是，前者一直存放于本地，后者伴随session窗口关闭就消失
+     */
+</script>
+</body>
+</html>

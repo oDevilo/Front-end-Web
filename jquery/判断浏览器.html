@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<script src="jq/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        if (/firefox/.test(navigator.userAgent.toLowerCase())) {
+            alert("firefox");
+        }
+        //谷歌的内核
+        if (/webkit/.test(navigator.userAgent.toLowerCase())) {
+            alert("webkit");
+        }
+        if (/opera/.test(navigator.userAgent.toLowerCase())) {
+            alert("opera");
+        }
+        //IE内核
+        if (/msie/.test(navigator.userAgent.toLowerCase())) {
+            alert("msie");
+        }
+        if ('undefined' == typeof(document.body.style.maxHeight)) {
+            alert("IE6");
+        }
+        if (!$.support.leadingWhitespace) {
+            alert("IE6-8");
+        }
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
+            //浏览器类型
+            browserType = "IE";
+            //浏览器版本
+            browserVersion = ua.match(/msie ([\d.]+)/) != null ? ua.match(/msie ([\d.]+)/)[1] : ua.match(/rv:([\d.]+)/)[1];
+            alert("IE11" + browserVersion);
+        }
+    });
+</script>
+</body>
+</html>

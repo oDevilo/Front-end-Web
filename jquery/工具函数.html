@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="jq/jquery-1.10.2.js"></script>
+<script>
+    //testextend();
+    function testextend() {
+        var jss = {
+            name: "123"
+        }
+        var jsss = {
+            age: "aaa"
+        }
+        var jss3 = {
+            test: 123213
+        }
+        var clone = $.extend({}, "aaa");
+        console.log(clone);
+        var clone2 = $.extend({}, "aaaa", "bbbb");
+        console.log(clone2);
+        var clone3 = $.extend(jss, "sdf");
+        console.log(clone3);
+        console.log(jss);
+        var clone4 = $.extend(jss, jsss, jss3);
+        console.log(clone4);
+        console.log(jsss);
+        var clone5 = $.extend({net: {name: "net"}});
+        console.log(jQuery.net);
+    }
+
+    testparseJson();
+    function testparseJson() {
+        console.log($.parseJSON('{"name":"aga","age":123,"test":"zzz"}'));
+    }
+</script>
+</body>
+</html>

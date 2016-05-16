@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom</title>
+    <script src="../jq/jquery-1.10.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            //1.获取HTML
+            $("input:eq(0)").click(function(){
+                var p_html=$("p").html();
+                alert(p_html);
+                $("p").html("<strong>你不喜欢的水果是？</strong>")
+            });
+            //2.text()方法
+            $("input:eq(1)").click(function(){
+                var p_text=$("p").text();
+                alert(p_text);
+            });
+            //3.val()方法
+            //类似value属性，可以设置和获取元素的值
+            //如果元素为多选则返回一个数组
+            $("#address").focus(function () {
+                //点击一次文本框
+               var txt_value=$(this).val(); //获取文本框的值
+                if(txt_value=="请输入邮箱地址"){
+                    $(this).val("");
+                }
+            });
+            $("#address").blur(function () {
+                //点击一次文本框
+                var txt_value=$(this).val(); //获取文本框的值
+                if(txt_value==""){
+                    $(this).val(this.defaultValue); //设置为默认值
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="HTML操作"/>
+<input type="button" value="text操作"/>
+<p title="选择你最喜欢的水果."><strong>你最喜欢的水果是？</strong></p>
+<input type="text" id="address" value="请输入邮箱地址"/>
+<input type="text" id="password" value="请输入邮箱密码"/>
+<input type="button" value="登录"/>
+</body>
+</html>

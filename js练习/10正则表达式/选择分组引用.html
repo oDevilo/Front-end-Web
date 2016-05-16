@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var p1 = /ab|cd|ef/; //可以匹配带有ab或者cd或者ef
+    console.log("ab:" + p1.test("ab"));
+    console.log("cd:" + p1.test("cd"));
+    console.log("ef:" + p1.test("ef"));
+    console.log("abc:" + p1.test("abc"));
+    var p2 = /[ab]/; //匹配a或者b
+    console.log("abc:" + p2.test("abc"));
+    var p3 = /[a-zA-Z0-9]/;   //匹配任何字母和数字
+    /**
+     * [...] 匹配括号内任意字符
+     * .     匹配除换行符和其他Unicode行终止符之外的任意字符
+     * \w    任何ASCII字符组成的单词，等价于[a-zA-Z0-9]
+     * \W    任何不是ASCII字符组成的单词，等价于[^a-zA-Z0-9]
+     * \s    任何Unicode空白符
+     * \S    任何非Unicode空白符
+     * \d    任何ASCII数字，等价于[0-9]
+     * \D    等价于[^0-9]
+     * [\b]  退格符
+     */
+    var p4 = /d{2,4}/;    //匹配2-4个数字
+    var p5 = /\w{3}\d/;       //三个单词和一个可选数字
+    // /a*/ 至少0个a，匹配'bbbbb'
+
+
+    /**         描字服
+     * ^        匹配字符串的开通，在多行检索中，匹配一行的开头
+     * $        匹配字符创的结尾，在多行检索中，匹配一行的结尾
+     * \b       匹配一个单词的边界，就是位于字符\w和\W之间的位置，
+     *          或位于\w和字符串开头或结尾之间的位置
+     * \B       匹配非单词边界的位置
+     * (?=p)    零宽正向先行断言，要求下面字符与p匹配，单不能包括匹配p的字符
+     * (?!p)    零宽负向先行断言，要求下面字符不与p匹配
+     */
+</script>
+</body>
+</html>

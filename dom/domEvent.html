@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .underline{
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+    <script type="text/javascript">
+        function handleEvent(e){
+            if(e.target.tagName=="P"){
+                if (e.type=="mouseover"){
+                    e.target.className="underline";
+                }
+                if (e.type=="mouseout"){
+                    e.target.className="";
+                }
+            }
+            if(e.type=="click"){
+                alert("You clicked the X:"+ e.clientX+" and Y:"+ e.clientY);
+            }
+        }
+        document.onmouseover=handleEvent;
+        document.onmouseout=handleEvent;
+        document.onclick=handleEvent;
+    </script>
+</head>
+<body>
+<p>This is p 1</p>
+<p>This is p 2</p>
+<p>This is p 3</p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom</title>
+    <script src="../jq/jquery-1.10.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var $para=$("p");               //获取p节点
+           //1.获取属性
+            var p_txt=$para.attr("title");//获取title属性
+           //2.设置属性
+            $("p").attr("title","your title");
+            //3.删除属性
+            $("p").removeAttr("title");
+        });
+    </script>
+</head>
+<body>
+<p title="选择你最喜欢的水果.">你最喜欢的水果是？</p>
+    <ul>
+        <li title="苹果">苹果</li>
+        <li title="橘子">橘子</li>
+        <li title="菠萝">菠萝</li>
+    </ul>
+</body>
+</html>

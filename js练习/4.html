@@ -1,0 +1,21 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+</head>
+<body>
+<input type="text" id="name">
+<input type="button" onclick="addHospital()" value="点击">
+<script type="text/javascript">
+	function addHospital(){
+		var hosname=document.getElementById("name").value;
+		if(hosname.replace(/(^\s*)|(\s*$)/g,"")==""){
+			alert("空格");
+		}
+		if(typeof hosname == "null" || hosname.replace(/(^s*)|(s*$)/g, "").length ==0){
+			alert("请输入医院名字");
+		}
+	}
+</script>
+</body>
+</html>

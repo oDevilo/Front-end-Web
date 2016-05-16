@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="#" id="selectAll">全选</a>
+<a href="#" id="selectIt">是否全选了？</a>
+<a href="#" id="selectSize">选中了几个</a>
+    <input type="checkbox" class="checkbox">选择1
+    <input type="checkbox" class="checkbox">选择2
+    <input type="checkbox" class="checkbox">选择3
+    <input type="checkbox" class="checkbox">选择4
+    <input type="checkbox" class="checkbox">选择5
+    <input type="checkbox" class="checkbox">选择6
+    <input type="checkbox" class="checkbox">选择7
+    <input type="checkbox" class="checkbox">选择8
+    <input type="checkbox" class="checkbox">选择9
+    <input type="checkbox" class="checkbox">选择0
+<script src="../jquery/jq/jquery-1.10.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $("#selectAll").click(function(){
+            var $allcheck=$(":checkbox:visible");
+            var $dllcheck=$(":checkbox:visible:checked");
+            if($allcheck.length==$dllcheck.length){
+                //如果所有都被选中，那么则将所有取消选取
+                $allcheck.attr("checked",false);
+            }else {
+                $allcheck.attr("checked",true);
+            }
+        });
+
+        $("#selectIt").click(function(){
+            var $allcheck=$(":checkbox:visible");
+            var $dllcheck=$(":checkbox:visible:checked");
+            if($allcheck.length==$dllcheck.length){
+                //如果所有都被选中，那么则将所有取消选取
+                for(var i=0;i<$allcheck.length;i++){
+                    $allcheck[i].checked=false;
+                }
+            }else {
+                for(var i=0;i<$allcheck.length;i++){
+                    $allcheck[i].checked=true;
+                }
+            }
+        });
+
+        $("#selectSize").click(function(){
+            var $cllcheck=$(":checkbox:visible:checked");
+            alert($cllcheck.length);
+        });
+    });
+</script>
+
+</body>
+</html>

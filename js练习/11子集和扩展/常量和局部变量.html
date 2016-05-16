@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    //常量为不可重复赋值的变量
+    //(对常量的重新赋值会失败，但不会报错)
+    const a=1;
+
+    //循环内变量可以在外部使用 y 和 g
+    for(var y=1;y<3;y++){
+        var g=y;
+        alert(g);
+    }
+    console.log(g);
+
+    //let 使变量无法在外部使用 j
+    for(var x=1;x<3;x++){
+        let j=x;
+        alert(j);
+    }
+    console.log(x);
+    console.log(j);
+
+    //方法内的变量在方法外无法直接调用
+    function abc(){
+        var c=1;
+        alert(c);
+    }
+    alert(c);
+</script>
+</body>
+</html>

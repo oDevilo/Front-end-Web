@@ -1,0 +1,14 @@
+防止中文乱码
+在加一个<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />或者<meta http-equiv="Content-Type" content="text/html; charset=gbk" /> 在第一行
+
+
+【1】ctrl+shift+p 打开命令面板，搜索"install"
+
+【2】键入"pakgageResourceViewer"，并安装之
+
+打开Color Scheme - Default文件夹，找到Monokai.tmTheme
+
+【4】搜索"Monokai.tmTheme",并打开这个XML文件
+
+【5】快捷键ctrl+f打开搜索，键入“comment”.快捷键ctrl+/注释掉<string>#75715E</string>,改为<string>#57A64A</string>。ctrl+s保存后就会发现注释变成了显眼的绿色
+

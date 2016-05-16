@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //正则表达式直接定义为//之间的字符串
+    var p1 = /s$/;
+    //或者用如下方法来new
+    var p2 = new RegExp("s$");
+    var p3 = new RegExp("\\{5}","i");
+    var s = 's1';
+    alert(p1.test('s1'));   //判断是否满足正则表达式
+</script>
+</body>
+</html>

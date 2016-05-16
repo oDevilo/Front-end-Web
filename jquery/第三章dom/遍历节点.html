@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom</title>
+    <script src="../jq/jquery-1.10.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            //1.children()
+            //获取匹配元素的子元素集合
+            var $cbody=$("body").children();
+            alert("body子节点个数为："+$cbody.length);
+            //2.next()
+            //获取匹配元素后面相邻的同辈元素
+            var $p=$("p").next();
+            alert($p.text());
+            //3.prev()
+            //获取匹配元素前面紧邻的同辈元素
+            var $ul=$("ul").prev();
+            alert($ul.text());
+            //4.siblings()
+            //匹配元素前后所有的同辈元素
+            var $sib=$("#bewt").siblings();
+            alert($sib.text());
+
+        });
+    </script>
+</head>
+<body>
+<p>你讨厌的水果为？</p>
+<p id="bewt" title="选择你最喜欢的水果.">你最喜欢的水果是？</p>
+    <ul>
+        <li title="苹果">苹果</li>
+        <li title="橘子">橘子</li>
+        <li title="菠萝">菠萝</li>
+    </ul>
+</body>
+</html>

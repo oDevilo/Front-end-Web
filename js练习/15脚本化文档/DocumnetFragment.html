@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    function reverse(n){
+        //创建一个DocumentFragment做临时容器
+        var frag=document.createDocumentFragment();
+        //从后至前循环子节点，将每个节点移动到文档片段中
+        //n的最后一个节点编程f的第一个节点，反之亦然
+        //给f添加一个节点，此节点自动会从n中删除
+        while (n.lastChild)
+            f.appendChild(n.lastChild);
+
+        //最后把f所有子节点移回n
+        n.appendChild(f);
+    }
+
+
+</script>
+</body>
+</html>

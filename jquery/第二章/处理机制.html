@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../jq/jquery-1.10.2.js"></script>
+</head>
+<body>
+<div>test</div>
+<script type="text/javascript">
+    $('#tt').css("color","red");    //虽然没有找到对象但是不会报错
+    document.getElementById("tt").style.color="red";    //报错，空
+</script>
+</body>
+</html>

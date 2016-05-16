@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function createDocument(){
+            var xmlDoc;
+            if (window.ActiveXObject){
+                var version=[
+                    "Msxml2.DOMDocument.6.0",
+                    "Msxml2.DOMDocument.3.0"
+                ];
+                for (var i=0;i<version.length;i++){
+                    try{
+                        xmlDoc=new ActiveXObject(version[i]);
+                        xmlDoc.load("dogs.xml");
+                        return xmlDoc;
+                    }
+                    catch (error){
+                        //do nothing
+                    }
+                }
+            }else if (document.implementation && document.implementation.createDocument){
+
+                xmlDoc=document.implementation.createDocument("","",null);
+                xmlDoc.load("dogs.xml");
+                return xmlDoc;
+            }
+            return null;
+        }
+        var xmlDocument=createDocument();
+
+        function displayDogs(){
+            var dogNodes=xmlDocument.getElemetsByTagName("dog");
+            var table=document.createElement("table");
+            table.setAttribute("cellPadding",5);
+            table.setAttribute("width","100%");
+            table.setAttribute("border","1");
+
+            var tableHeader=document.createElement("thead");
+            var tableRow=document.createElement("tr");
+
+            for(var i=0;i<dogNodes[0].childNodes.length;i++){
+                var currentNode=dogNodes[0].childNodes[i];
+                if (currentNode.nodeType==1){
+                    var tableHeaderCell=document.createElement("th");
+                    var textData=document.createTextNode(currentNode.nodeName);
+                    tableHeaderCell.appendChild(textData);
+                    tableRow.appendChild(tableHeaderCell);
+                }
+            }
+            tableHeader.appendChild(tableRow);
+            table.appendChild(tableHeader);
+            var tableBody=document.createElement("tbody");
+            for (var i=0;i<dogNodes.length;i++){
+                var tableRow=document.createElement("tr");
+                for(var j=0;j<dogNodes[i].childNodes.length;j++){
+                    var currentNode=dogNodes[i].childNodes[j];
+                    if (currentNode.nodeType==1){
+                        var tableDataCell=document.createElement("td");
+                        var textData=document.createTextNode(
+                              currentNode.firstChild.nodeValue
+                        );
+                        tableDataCell.appendChild(textData);
+                        tableRow.appendChild(tableDataCell);
+                    }
+                }
+                tableBody.appendChild(tableRow);
+            }
+            table.appendChild(tableBody);
+            document.body.appendChild(table);
+        }
+
+    </script>
+</head>
+<body>
+    <a href="javascript: displayDogs();">Display Dogs</a>
+</body>
+</html>

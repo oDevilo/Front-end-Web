@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select id="Select1" onchange="getSelectValue(this);" on="getSelectValue(this);">
+    <option value="1">第一项</option>
+    <option selected value="2">第二项(默认选中)</option>
+    <option value="3">第三项</option>
+    <option value="4">第四项</option>
+</select>
+
+<br /><br /><br />您选择的是：
+<span id="selectValue"></span>
+
+<script language="javascript" type="text/javascript">
+    function getSelectValue(obj) {
+        var sValue = obj.options[obj.options.selectedIndex].value; //这是取值
+        alert(sValue);
+        var sText = obj.options[obj.options.selectedIndex].innerHTML; //这是取文本内容
+        alert(sText);
+        var sPri=document.getElementById("selectValue").innerHTML = sText + "，他的值为：" + sValue; //测试输出
+        alert(sPri);
+    }
+</script>
+</body>
+</html>

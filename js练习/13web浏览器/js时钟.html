@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #clock {
+            font: bold 24pt sans;
+            background: #ddf;
+            padding: 10px;
+            border: solid black 2px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body onload="displayTime()">
+<h1>时钟</h1>
+<span id="clock"></span>
+
+<script>
+    function displayTime() {
+        var elt = document.getElementById("clock");
+        var now = new Date();
+        elt.innerHTML = now.toLocaleTimeString(); //显示
+        setTimeout(displayTime, 1000);           //一秒一次数据更新
+    }
+</script>
+</body>
+</html>

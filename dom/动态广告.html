@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #divAdvert{
+            position: absolute;
+            font: 12px Arial;
+            top: 4px;
+            left: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        var switchDirection=false;
+        function doAnimation(){
+            var divAdvert=document.getElementById("divAdvert");
+            var currentLeft=divAdvert.offsetLeft;
+            var newLocation;
+
+            if(switchDirection==false){
+                newLocation=currentLeft+200;
+                if (currentLeft>=400){
+                    switchDirection=true;
+                }
+            }else{
+                newLocation=currentLeft-200;
+                if (currentLeft<=0){
+                    switchDirection=false;
+                }
+            }
+            divAdvert.style.left=newLocation+"px";
+        }
+    </script>
+</head>
+<body onload="setInterval(doAnimation,3000)">
+    <div id="divAdvert">Here is a.</div>
+</body>
+</html>

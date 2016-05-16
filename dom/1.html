@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="heading1">My Heading</h1>
+123
+111
+<p id="paragraph1">This is some text in a par</p>
+<script type="text/javascript">
+    var h1El=document.getElementById("heading1");
+    h1El.style.color="red";
+
+    var pEl;
+    if(h1El.nextSibling.nodeType==1){
+        pEl=h1El.nextSibling;
+    }else {
+        pEl=h1El.nextSibling.nextSibling;
+    }
+    pEl.style.color="green";
+</script>
+</body>
+</html>

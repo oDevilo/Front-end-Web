@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乘法表</title>
+    <script type="text/javascript">
+        function writeTimesTable(timesTable){
+            var counter;
+            var writeString;
+            for (counter=1;counter<12;counter++){
+                writeString=counter+" "+timesTable+"=";
+                writeString=writeString+(timesTable*counter);
+                writeString=writeString+"<br/>";
+                document.write(writeString);
+            }
+        }
+    </script>
+</head>
+<body>
+<script type="text/javascript">
+    writeTimesTable(2);
+</script>
+</body>
+</html>

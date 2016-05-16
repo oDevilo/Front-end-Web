@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="DisplayResultsDiv"></div>
+    <script type="text/javascript">
+        var myDate=new Date();
+        myDate.setUTCDate(13);
+        myDate.setUTCMinutes(1);
+        myDate.setUTCSeconds(55);
+        var resultH='<p>'+myDate.toUTCString()+'</p>';
+            resultH+="<p>"+myDate.toLocaleString()+'</p>';
+
+        document.getElementById('DisplayResultsDiv').innerHTML=resultH;
+    </script>
+</body>
+</html>

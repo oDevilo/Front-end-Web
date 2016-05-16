@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    //window.onload=cons;//不要括号
+    //window.onload = delMe;
+    //window.onload = haspro();
+    //window.onload = forUser();
+    //window.onload = getAndSet();
+    window.onload = servvv();
+    function cons() {
+        alert("123213");
+        console.log("log");
+    }
+    function delMe() {
+        var user = {"name": "张三", "pass": "123"};   //创建对象
+        alert(user.name);
+        var pass = user.pass; //获取属性
+        alert(pass);
+        delete user.pass;    //删除属性
+        alert(user.pass);
+    }
+    function haspro() {
+        var user = {"name": "张三", "pass": "123"};   //创建对象
+        alert(user.hasOwnProperty("name"));
+        alert(user.hasOwnProperty("xxx"));
+    }
+    function forUser() {
+        var user = {"name": "张三", "pass": "123", "book": {"author": "李四", "page": 123}};   //创建对象
+        for (p in user) {
+            alert(p);
+        }
+    }
+    function getAndSet(){
+        var o={
+            pass:"",
+            name:"张三",
+            set r(v){
+                this.pass=v;
+            },
+            get r(){
+                return this.pass;
+            }
+        };
+        alert(o.name);
+        alert(o.pass);
+        alert(o.r);
+    }
+    function servvv(){
+        var user = {"name": "张三", "pass": "123", "book": {"author": "李四", "page": 123}};   //创建对象
+        var p=JSON.stringify(user);
+        var o=JSON.parse(p);        //对象序列化
+        alert("{'in':'dsdf','sdf':dsfd}".toString);
+        alert("{'in':'dsdf','sdf':dsfd}".toLocaleString);
+        alert("{'in':'dsdf','sdf':dsfd}".toJSON);
+        alert("sdfds".valueOf);
+
+    }
+</script>
+</body>
+</html>

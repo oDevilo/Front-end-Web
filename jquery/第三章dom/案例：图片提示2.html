@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片提示</title>
+ <!--   引入jQuery -->
+ <script src="../jq/jquery-1.10.2.js" type="text/javascript"></script>
+<style type="text/css">
+body{
+	margin:0;
+	padding:40px;
+	background:#fff;
+	font:80% Arial, Helvetica, sans-serif;
+	color:#555;
+	line-height:180%;
+}
+img{border:none;}
+ul,li{
+	margin:0;
+	padding:0;
+}
+li{
+	list-style:none;
+	float:left;
+	display:inline;
+	margin-right:10px;
+	border:1px solid #AAAAAA;
+}
+
+/* tooltip */
+#tooltip{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:2px;
+	display:none;
+	color:#fff;
+}
+</style>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	//设置偏移量x，y
+	var x = 10;
+	var y = 20;
+	//当鼠标移动到图片上时
+	$("a.tooltip").mouseover(function(e){
+		var imgTitle = this.title? "<br/>" + this.title : "";
+		var tooltip = "<div id='tooltip'><img src='"+ this.href +"' alt='产品预览图' height='10px' width='10px'/>"+imgTitle+"</div>"; //创建 div 元素
+		$("body").append(tooltip);	//把它追加到文档中						 
+		$("#tooltip")
+			.css({
+				"top": (e.pageY+y) + "px",
+				"left":  (e.pageX+x)  + "px",
+			}).show("fast");	  //设置x坐标和y坐标，并且显示
+    }).mouseout(function(){
+		$("#tooltip").remove();	 //移除
+    }).mousemove(function(e){
+		$("#tooltip")
+			.css({
+				"top": (e.pageY+y) + "px",
+				"left":  (e.pageX+x)  + "px"
+			});
+	});
+});
+//]]>
+</script>
+
+</head>
+<body>
+<div>
+	<a href="images/apple_1_bigger.jpg" class="tooltip" title="苹果 iPod"><img src="images/apple_1_bigger.jpg" alt="苹果 iPod" height="75px" width="100px"/></a>
+</div>
+</body>
+</html>

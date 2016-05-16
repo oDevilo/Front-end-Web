@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="CookieFunctions.js"></script>
+    <script type="text/javascript">
+        var lasetUPdate=new Date("Tue, 28 Dec 2020");
+    </script>
+</head>
+<body>
+<h1 align="center">Welcom to my Web</h1>
+
+<div align="center" id="WhatsNewDiv"></div>
+
+<script>
+    var lasetVisit =getCookieValue("LastVisit");
+    if (lasetVisit!=null){
+        lasetVisit=new Date(lasetVisit);
+        if (lasetVisit<lasetUPdate){
+            document.getElementById('WhatsNewDiv').innerHTML="<a href='WhatsNew.html'><img src='/js练习/2.jpg' border=0></a>";
+
+        }
+    }
+    var nowDate=new Date();
+    setCookie("LastVisit",nowDate.toUTCString(),"","");
+</script>
+
+</body>
+</html>

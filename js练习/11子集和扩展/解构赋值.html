@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //当函数返回一组结果时，使用解构赋值将简化
+    function a1() {
+        var [x,y]=[1, 2];
+        [x, y] = [x + 1, y + 1];
+        [x, y] = [y, x];
+        console.log([x, y]);
+    }
+
+    //将[x,y]从笛卡尔（直角）坐标转换为[r,theta]坐标
+    function a2() {
+        let [r,theta]=polar(1.0, 1.0);
+        let [zz,xx]=cartesian(r, theta);
+        console.log([r, theta]);
+        console.log([zz, xx]);
+    }
+
+
+    //解构赋值的时候，右侧数组和左侧变量不必一一对应
+    //a3();
+    function a3() {
+        var [x,y]=[1];
+        console.log([x, y]);
+        [x, y] = [1, 2, 3];
+        console.log([x, y]);
+        [, x, , y] = [1, 2, 3, 4];
+        console.log([x, y]);
+
+        //右侧也可以是对象
+        var {sin:sin,cos:cos,tan:tan}=Math; //cos,sin,tan都为方法
+        console.log({sin: sin, cos: cos, tan});
+        var jtest = {
+            a: 45, b: 44
+        };
+        var {a:geta,b:getb}=jtest;  //这里需要注意的是，value在左边，key在右
+        console.log({a: geta, b: getb});
+    }
+
+    //迭代
+    //a4();
+    function a4() {
+        var o = {one: 1, two: 2, three: 3}
+        for (var p in o)
+            console.log(p); //for/in遍历的是对象的属性，而不是值
+
+    }
+
+    //迭代器,迭代对象属性
+    a5();
+    function range(min, max) {
+        return {    //返回一个表示这个范围的对象
+            get min() {
+                return min;
+            },
+            get max() {
+                return max;
+            },
+            includes: function (x) {
+                return min <= x && x <= max;
+            },
+            toString: function () {
+                return "[" + min + "," + max + "]";
+            },
+            _iterator_: function () {
+                var val = Math.ceil(min); //将当前位置保存在闭包中
+                return {
+                    next: function () {
+                        if (val > max)
+                            throw StopIteration;
+                        return val++;
+                    }
+                }
+            }
+        }
+    }
+    function a5() {
+        for (var i in range(1, 10))
+            console.log(i);
+    }
+
+
+
+    function polar(x, y) {
+        return [Math.sqrt(x * x + y * y), Math.atan2(y, x)]
+    }
+
+    function cartesian(r, theta) {
+        return [r * Math.cos(theta), r * Math.sin(theta)];
+    }
+
+
+</script>
+</body>
+</html>
