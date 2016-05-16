@@ -1,0 +1,15 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+.externalToolBuilders/
+*.war
+
+
+# Intellij project files
+*.iml
+.idea/
+
+# Others
+target/
+logs/
