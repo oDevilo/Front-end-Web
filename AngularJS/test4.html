@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+
+<!--
+AngularJS 模块（Module） 定义了 AngularJS 应用。
+AngularJS 控制器（Controller） 用于控制 AngularJS 应用。
+ng-app指令定义了应用, ng-controller 定义了控制器。 -->
+<div ng-app="myApp" ng-controller="myCtrl">
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName + " " + lastName}}
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.firstName= "John";
+        $scope.lastName= "Doe";
+    });
+</script>
+</body>
+</html>

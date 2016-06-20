@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+<!--
+currency	格式化数字为货币格式。
+filter	从数组项中选择一个子集。
+lowercase	格式化字符串为小写。
+orderBy	根据某个表达式排列数组。
+uppercase	格式化字符串为大写。
+-->
+<div ng-app="myApp" ng-controller="namesCtrl">
+    <h3>输入过滤</h3>
+    <p><input type="text" ng-model="test"></p>
+    <ul>
+        <li ng-repeat="x in names | filter:test | orderBy:'country'">
+            {{ (x.name | uppercase) + ', ' + x.country }}
+        </li>
+    </ul>
+    <h3>排序</h3>
+    <ul>
+        <li ng-repeat="x in names | orderBy:'country'">
+            {{ x.name + ', ' + x.country }}
+        </li>
+    </ul>
+    <h3>大写</h3>
+    {{test | uppercase}}
+    <h3>小写</h3>
+    {{test | lowercase}}
+    <h3>货币</h3>
+    <div id="A2" ng-app="myApp2" ng-controller="costCtrl">
+        数量: <input type="number" ng-model="quantity">
+        价格: <input type="number" ng-model="price">
+        <p>总价 = {{ (quantity * price) | currency }}</p>
+    </div>
+</div>
+
+<script src="namesController.js"></script>
+<script>
+    var app = angular.module('myApp2', []);
+    app.controller('costCtrl', function($scope) {
+        $scope.quantity = 1;
+        $scope.price = 9.99;
+    });
+    angular.bootstrap(document.getElementById("A2"),['myApp2']);
+</script>
+
+</body>
+</html>

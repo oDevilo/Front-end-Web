@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+<!--<runoob-directive></runoob-directive>-->
+
+<!--<div runoob-directive></div>-->
+
+<!--<div class="runoob-directive"></div>
+<p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "C" 才能通过类名来调用指令。</p>-->
+
+<!-- directive: runoob-directive -->
+<!--<p><strong>注意：</strong> 我们需要在该实例添加 <strong>replace</strong> 属性， 否则评论是不可见的。</p>
+<p><strong>注意：</strong> 你必须设置 <b>restrict</b> 的值为 "M" 才能通过注释来调用指令。</p>-->
+
+
+<runoob-directive></runoob-directive>不可见
+<div runoob-directive></div>可见
+<p><strong>注意：</strong> 通过设置 <strong>restrict</strong> 属性值为 "A" 来设置指令只能通过 HTML 元素的属性来调用。</p>
+
+<script>
+    var app = angular.module("myApp", []);
+
+    /*app.directive("runoobDirective", function() {
+        return {
+            template : "<h1>自定义指令!</h1>"
+        };
+    });*/
+
+    /*app.directive("runoobDirective", function() {
+        return {
+            restrict : "C",
+            template : "<h1>自定义指令!</h1>"
+        };
+    });*/
+
+    /*app.directive("runoobDirective", function() {
+        return {
+            restrict : "M",
+            template : "<h1>自定义指令!</h1>",
+            replace : true
+        };
+    });*/
+
+    var app = angular.module("myApp", []);
+    app.directive("runoobDirective", function() {
+        return {
+            restrict : "A",
+            template : "<h1>自定义指令!</h1>"
+        };
+    });
+</script>
+
+</body>
+</html>

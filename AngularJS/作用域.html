@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+
+<!--
+$scope是每个应用的域
+$rootScope是全局使用的
+-->
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <h1>姓氏为 {{lastname}} 家族成员:</h1>
+    <ul>
+        <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+    </ul>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $rootScope) {
+        $scope.names = ["Emil", "Tobias", "Linus"];
+        $rootScope.lastname = "Refsnes";
+    });
+</script>
+
+<p>注意 $rootScope 在循环对象内外都可以访问。</p>
+
+</body>
+</html>
