@@ -7,6 +7,75 @@
 </head>
 <body>
 
+<div ng-app="myApp1" ng-controller="myCtrl">
+    <p> 当前页面的url:</p>
+    <h3>{{myUrl}}</h3>
+</div>
+
+<p>该实例使用了内建的 $location 服务获取当前页面的 URL。AngularJS 使用 $location 服务比使用 window.location 对象更好</p>
+
+<script>
+    var app = angular.module('myApp1', []);
+    app.controller('myCtrl', function ($scope, $location) {
+        $scope.myUrl = $location.absUrl();
+    });
+</script>
+
+
+<div id="A2" ng-app="myApp2" ng-controller="myCtrl">
+    <p>两秒后显示信息:</p>
+    <h1>{{myHeader}}</h1>
+</div>
+
+<p>$timeout 访问在规定的毫秒数后执行指定函数。</p>
+<script>
+    var app = angular.module('myApp2', []);
+    app.controller('myCtrl', function ($scope, $timeout) {
+        $scope.myHeader = "Hello World!";
+        $timeout(function () {
+            $scope.myHeader = "How are you today?";
+        }, 2000);
+    });
+    angular.bootstrap(document.getElementById("A2"),['myApp2']);
+</script>
+
+<div id="A3" ng-app="myApp" ng-controller="myCtrl">
+    <p>现在时间是:</p>
+    <h1>{{theTime}}</h1>
+</div>
+
+<p>$interval 访问在指定的周期(以毫秒计)来调用函数或计算表达式。</p>
+
+<script>
+    var app = angular.module('myApp3', []);
+    app.controller('myCtrl', function($scope, $interval) {
+        $scope.theTime = new Date().toLocaleTimeString();
+        $interval(function () {
+            $scope.theTime = new Date().toLocaleTimeString();
+        }, 1000);
+    });
+    angular.bootstrap(document.getElementById("A3"),['myApp3']);
+</script>
+
+<p>自定义服务，用于转换16进制数：</p>
+<div id="A4" ng-app="myApp4" ng-controller="myCtrl">
+    <p>255 的16进制是:</p>
+    <h1>{{hex}}</h1>
+</div>
+
+<script>
+    var app = angular.module('myApp4', []);
+
+    app.service('$hexafy', function() {
+        this.myFunc = function (x) {
+            return x.toString(16);
+        }
+    });
+    app.controller('myCtrl', function($scope, $hexafy) {
+        $scope.hex = $hexafy.myFunc(255);
+    });
+    angular.bootstrap(document.getElementById("A4"),['myApp4']);
+</script>
 
 </body>
 </html>
