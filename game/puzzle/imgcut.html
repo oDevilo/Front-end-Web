@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拼图小游戏</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="index.css"/>
+</head>
+
+
+<body>
+<h2>已移动步数 <span id="step">0</span></h2>
+<canvas id="canvas">
+    cannot support canvas
+</canvas>
+
+<ul id="game">
+    <li><img src="" alt="" draggable="true" id="0"></li>
+    <li><img src="" alt="" draggable="true" id="1"></li>
+    <li><img src="" alt="" draggable="true" id="2"></li>
+    <li><img src="" alt="" draggable="true" id="3"></li>
+    <li><img src="" alt="" draggable="true" id="4"></li>
+    <li><img src="" alt="" draggable="true" id="5"></li>
+    <li><img src="" alt="" draggable="true" id="6"></li>
+    <li><img src="" alt="" draggable="true" id="7"></li>
+    <li><img src="" alt="" draggable="true" id="8"></li>
+<ul/>
+
+
+<div class="hint hide">
+    <div>
+        <p>恭喜你！你已经通过！</p>
+        <p>已击败 96%的人</p>
+        <p id="next">点击进入下一关！</p>
+    <div/>
+</div>
+<script src="jquery-1.10.2.js"></script>
+<script src="index.js"></script>
+<!-- <script type="text/javascript">
+    $(function(){
+        alert("ssss");
+
+        var oCanvas = document.getElementById('canvas');
+        var context = oCanvas.getContext('2d');
+
+        var imgLikeArr = document.querySelectorAll('img');
+        var imgArr = Array.prototype.slice.call(imgLikeArr);
+
+        var image = new Image(), self = this;
+        image.src = 'shulan.jpg';
+
+        var index = 0;
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    context.drawImage(image, 300 * j, 300 * i, 300, 600, 0, 0, 300, 300);
+                    // imgArr[index].crossOrigin = "Anonymous";
+                    imgArr[index].src = oCanvas.toDataURL('image/jpeg');
+                    imgArr[index].id = index;
+                    index++;
+                }
+            }
+
+
+
+
+        // var oGrayImg = new Image();
+        // oGrayImg.src = oCanvas.toDataURL("image/jpeg");
+        //调用
+        // var puzzle = new Puzzle();
+        // puzzle.init('shulan.jpg');
+    });
+</script> -->
+</body>
+</html>
