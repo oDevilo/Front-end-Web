@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="icon.css">
+    <link rel="stylesheet" type="text/css" href="icons.css">
+    <style type="text/css">
+    body {
+        background-color: #fcffbe;
+        text-align: center;
+    }
+    
+    #main-wrap {
+        text-align: center;
+        min-height: 100%;
+        height: auto;
+        position: relative;
+        margin: 0 auto;
+        width: 760px;
+    }
+    
+    span {
+        display: inline-block;
+        margin: 5px;
+        padding: 20px;
+        position: relative;
+    }
+    
+    span i[class*="icono"] {
+        color: #2955ff;
+        transition: all 0.2s;
+    }
+    
+    span:hover i {
+        color: #fff;
+    }
+    
+    span:hover {
+        background-color: #8676e6;
+    }
+    
+    .desc {
+        margin: 16px 25px;
+        font-size: 20px;
+        color: #ff0050;
+        font-weight: bold;
+    }
+    
+    #github-link {
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="main-wrap">
+        <span><i class="iconoo-pin"></i></span>
+        <span><i class="iconoo-locationArrow"></i></span>
+        <span><i class="iconoo-sync"></i></span>
+        <span><i class="iconoo-reset"></i></span>
+        <span><i class="iconoo-share"></i></span>
+        <span><i class="iconoo-search"></i></span>
+        <span><i class="iconoo-home"></i></span>
+        <span><i class="iconoo-bars"></i></span>
+        <span><i class="iconoo-ellipsis"></i></span>
+        <span><i class="iconoo-tiles"></i></span>
+        <span><i class="iconoo-list"></i></span>
+        <span><i class="iconoo-smile"></i></span>
+        <span><i class="iconoo-frown"></i></span>
+        <span><i class="iconoo-meh"></i></span>
+        <span><i class="iconoo-volume"></i></span>
+        <span><i class="iconoo-volumeLow"></i></span>
+        <span><i class="iconoo-volumeMedium"></i></span>
+        <span><i class="iconoo-volumeHigh"></i></span>
+        <span><i class="iconoo-volumeDecrease"></i></span>
+        <span><i class="iconoo-volumeIncrease"></i></span>
+        <span><i class="iconoo-volumeMute"></i></span>
+        <span><i class="iconoo-play"></i></span>
+        <span><i class="iconoo-pause"></i></span>
+        <span><i class="iconoo-stop"></i></span>
+        <span><i class="iconoo-rewind"></i></span>
+        <span><i class="iconoo-forward"></i></span>
+        <span><i class="iconoo-next"></i></span>
+        <span><i class="iconoo-previous"></i></span>
+        <span><i class="iconoo-rightArrow"></i></span>
+        <span><i class="iconoo-leftArrow"></i></span>
+        <span><i class="iconoo-upArrow"></i></span>
+        <span><i class="iconoo-downArrow"></i></span>
+        <span><i class="iconoo-check"></i></span>
+        <span><i class="iconoo-checkCircle"></i></span>
+        <span><i class="iconoo-cross"></i></span>
+        <span><i class="iconoo-crossCircle"></i></span>
+        <span><i class="iconoo-plus"></i></span>
+        <span><i class="iconoo-plusCircle"></i></span>
+        <span><i class="iconoo-caretRight"></i></span>
+        <span><i class="iconoo-caretLeft"></i></span>
+        <span><i class="iconoo-caretUp"></i></span>
+        <span><i class="iconoo-caretDown"></i></span>
+        <span><i class="iconoo-caretRightCircle"></i></span>
+        <span><i class="iconoo-caretLeftCircle"></i></span>
+        <span><i class="iconoo-caretUpCircle"></i></span>
+        <span><i class="iconoo-caretDownCircle"></i></span>
+        <span><i class="iconoo-caretRightSquare"></i></span>
+        <span><i class="iconoo-caretLeftSquare"></i></span>
+        <span><i class="iconoo-caretUpSquare"></i></span>
+        <span><i class="iconoo-caretDownSquare"></i></span>
+        <span><i class="plus"></i></span>
+        <span><i class="icon-img"></i></span>
+        <span><i class="icon-codepen"></i></span>
+    </div>
+    <script>
+    var wrap = document.getElementById('main-wrap');
+    wrap.addEventListener('click', function(e) {
+        console.log('e.target',e.target);
+        var target = e.target.children[0] || e.target;
+        console.log('The icon you clicked is : ', target.className);
+    });
+    </script>
+</body>
+
+</html>
