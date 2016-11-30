@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="关键词，关键词">
+	<meta name="description" content="description">
+	<title>批量文件上传轮播</title>
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		body{
+			background: url(img/bg.jpg) no-repeat;
+			background-size: cover;
+		}
+		.bannerbox{
+			width: 520px;
+			height: 280px;
+			/** border: 1px solid red; **/
+			margin: 100px auto;
+			position: relative; /** relative生成相对定位的元素，让子元素相对其定位 **/
+			overflow: hidden;
+			box-shadow: 2px 5px 10px;
+		}
+		.bannerbox ul {
+			width: 1000%;
+		}
+		.bannerbox ul li {
+			list-style: none;/**去掉li前面的黑点**/
+			float: left; /**向左浮动，会根据ul的长度排列，如果ul长多够长，则会排成一列**/
+		}
+		/** 左右切换的样式 **/
+		.bannerbox a {
+			text-decoration: none; /** 去掉a的下划线 **/
+			background: gray;
+			width: 50px;
+			height: 40px;
+			display: block; /** display 属性规定元素应该生成的框的类型;block表示将元素显示为块级元素 **/
+			font-weight: bold;
+			text-align: center;
+			line-height: 35px;
+			position: absolute; /** absolute绝对定位 **/
+			top: 50%;
+			color: #654242;
+		}
+		.bannerbox .prev{ left: 10px; }
+		.bannerbox .next{ right: 10px; }
+		.bannerbox a:hover{ /** hover 鼠标指针浮动在其上的元素，并设置其样式 **/
+			background: gray;
+			color: #fff;
+			transition: 1s; /** 鼠标放置，1s动画而不是直接显示 **/
+		}
+	</style>
+</head>
+<body>
+	<div class="bannerbox" style="">
+		<a href="javascript:void(0);" class="prev">上一个</a>
+		<ul class="banner">
+			<li><img src="img/1.jpg"/></li>
+			<li><img src="img/2.jpg"/></li>
+			<li><img src="img/3.jpg"/></li>
+			<li><img src="img/4.jpg"/></li>
+		</ul>
+		<a href="javascript:void(0);" class="next">下一个</a>
+	</div>
+
+	<div id="box" style="font-size: 20px;">0</div>
+
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript">
+// js 六大类型 number string boolean undefined object function
+	$(function(){
+		var index = 0;
+		var $liWidth = $(".bannerbox").find("li").eq(0).width();
+		var len = $(".banner").find("li").length;
+		// 点击下一个
+		$(".next").click(function(){
+			index++;
+			if (index == len) {
+				index = 0;
+			}
+			$("#box").html(index);
+			$(".banner").stop(true).animate({"margin-left":-$liWidth*index},500);
+		});
+		// 点击上一个
+		$(".prev").click(function(){
+			index--;
+			if (index < 0) {
+				index = len - 1;
+			}
+			$("#box").html(index);
+			$(".banner").stop(true).animate({"margin-left":-$liWidth*index},500);
+		});
+	});
+</script>
+</body>
+</html>
