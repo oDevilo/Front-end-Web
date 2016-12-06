@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script data-main="main" src="require.js"></script>
+</head>
+<body>
+<p>src指定require的路径，date-main指定配置的main.js的路径</p>
+
+<p>data-main="js/main"设定后，我们在使用require(['jquery'])后(不配置jquery的paths)，require会自动加载js/jquery.js这个文件</p>
+
+<p>而不是jquery.js，相当于默认配置了：
+
+require.config({
+    baseUrl : "js"
+})
+
+</p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="require.js"></script>
+	<script type="text/javascript">
+		require(["b"],function(){
+			console.log("end load");
+			alert("end load");
+		});
+	</script>
+</head>
+<body>
+<span>require有两个参数，前面是一个数组，表示需要加载的js，后面是一个callback的function，处理加载后的逻辑</span>
+</body>
+</html>
