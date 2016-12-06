@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title>时钟</title>
+	<script src="js/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="MyContr1">
+	<h1>Hello {{ clock.now }} !</h1>
+</div>
+<script type="text/javascript">
+	var app = angular.module('myApp',[]);
+	app.controller('MyContr1', function($scope, $timeout) {
+		var updateClock = function() {
+			$scope.clock = {
+				now : new Date()
+			};
+			$timeout(function() {
+				updateClock();
+			},1000);
+		}
+		updateClock();
+	})
+/*	$timeout指令对window.setTimeout做了一个封装,它的返回值是一个promise对象.当定义的时间到了以后,这个promise对象就会被resolve,回调函数就会被执行.
+
+如果需要取消一个timeout,调用$timeout.cancel(promise)方法.
+
+用法:
+
+$timeout(fn, [delay], [invokeApply]);
+
+fn: 回调函数(必填)
+
+delay: number类型.延迟的时间(非必填),如果不填,表示等线程空下来以后就执行.比如当页面被渲染完成后.
+
+invokeApply: 布尔值.是否需要进行脏值检测(非必填),不填默认为false,如果设置为true,则fn回调会被包在$scope.$apply()中执行
+
+返回值: 返回一个promise对象.当定义的时间到了以后,这个promise对象就会被resolve.resolve的值就是fn回调函数的返回值
+
+方法:
+
+$timeout.cancel([promise])
+
+promise: 一个由$timeout()所创建的promise对象.(非必填).调用cancel()以后,这个promise对象就会被reject.
+
+返回值: 如果$timeout()的回调还没有被执行,那就取消成功.返回true*/
+</script>
+</body>
+</html>

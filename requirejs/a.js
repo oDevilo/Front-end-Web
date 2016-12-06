@@ -1,5 +1,9 @@
-function fun1() {
-	alert("it works");
-}
+(function(){
+	function fun2(val) {
+		alert("it works" + val);
+	}
 
-fun1();
+	fun2();
+
+	return "this is a.obj"
+})();

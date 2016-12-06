@@ -28,23 +28,30 @@ uppercase	格式化字符串为大写。
         </li>
     </ul>
     <h3>大写</h3>
-    {{test | uppercase}}
+    {{ 'tsssest' | uppercase }}
     <h3>小写</h3>
-    {{test | lowercase}}
+    {{ 'SEFSDF' | lowercase }}
+    <h3>两位小数</h3>
+    {{ 123.456777 | number:2 }}
     <h3>货币</h3>
     <div id="A2" ng-app="myApp2" ng-controller="costCtrl">
         数量: <input type="number" ng-model="quantity">
         价格: <input type="number" ng-model="price">
         <p>总价 = {{ (quantity * price) | currency }}</p>
     </div>
+    <h3>日期</h3>
+    {{today | date:'longDate'}}
 </div>
 
-<script src="namesController.js"></script>
+<script src="namesController.js">
+    // 加入names
+</script>
 <script>
     var app = angular.module('myApp2', []);
     app.controller('costCtrl', function($scope) {
         $scope.quantity = 1;
         $scope.price = 9.99;
+        $scope.today = new Date();
     });
     angular.bootstrap(document.getElementById("A2"),['myApp2']);
 </script>

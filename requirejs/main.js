@@ -18,6 +18,6 @@ require.config({
 
 /*在这里配置require，那么别的地方只需要加载此文件，省去了很多配置*/
 
-require(["jquery","b"] , function(){
+require(["jquery","b","a","c"], function(){
 	alert("所有js加载完成");
 });

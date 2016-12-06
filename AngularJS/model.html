@@ -9,5 +9,13 @@
 Your name: <input type="text" ng-model="yourname" placeholder="World">
 <hr>
 Hello {{yourname || 'World'}}!
+
+<button onclick="btnClk()">点击</button>
+<script type="text/javascript">
+	function btnClk(){
+		var val = $('#idinput').val(); // 没引入jq，报错
+		alert(val);
+	}
+</script>
 </body>
 </html>

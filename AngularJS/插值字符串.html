@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="js/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="MyController">
+	<div id="emailEditor">
+		<font> To </font>
+		<input type="email" placeholder="Recipient" ng-model="to" />
+		<textarea ng-model="emailBody"></textarea>
+	</div>
+	<div id="emailPreview">
+		<pre>__previewText__</pre>
+	</div>
+
+
+<p></p>
+<p></p>
+<p>转换符由{{a}}设置为__space__</p>
+<p>在email栏输入wangyi@163.com</p>
+<p>在textarea栏输入hello __test__ </p>
+</div>
+
+<script type="text/javascript">
+	// 利用$interpolate服务在字符串模板中做插值操作
+	/*
+	$interpolate服务可以接收三个参数，第一个参数是必须的
+	text(字符串) : 一个包含字符创插值标记的字符串
+	mustHaveExpression(bool) : 如果将这个参数设置为true，当传入字符串中不含表达式时返回null
+	trustedContext(字符串) : 对已经进行过字符串插值操作的字符串通过$sec.getTrested()方法进行严格的上下文转义
+	*/
+	angular.module('emailParser', []).config(['$interpolateProvider', function($interpolateProvider) {
+		$interpolateProvider.startSymbol('__');
+		$interpolateProvider.endSymbol('__');
+	}]).factory('EmailParser', ['$interpolate', function($interpolate) {
+		// 处理解析的服务
+		return {
+			parse: function(text,context) {
+				var template = $interpolate(text);
+				return template(context);
+			}
+		};
+	}]);
+
+	angular.module('myApp', ['emailParser']).controller('MyController', ['$scope', 'EmailParser', function($scope, EmailParser){
+		// 设置监听
+		$scope.$watch('emailBody', function(body) {
+			if (body) {
+				$scope.previewText = EmailParser.parse(body, {
+					to: $scope.to
+				});
+			}
+		});
+		$scope.test = "__to__";
+		$scope.space = "__a__"
+	}]);
+
+	/*angular.module('myApp',[]).controller('MyController', function($scope,$interpolate){
+		$scope.$watch('emailBody', function(body){
+			if (body) {
+				var template = $interpolate(body);
+				$scope.previewText = template({to : $scope.to});
+			}
+		});
+	});*/
+</script>
+</body>
+</html>
