@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+</head>
+
+
+<body data-ng-app="isolateScope">
+    <div data-ng-controller="ctrl">
+        <div data-isolate-directive data-isolates="func"></div>
+    </div>
+</body>
+
+<script>
+angular.module('isolateScope', [])
+	.controller("ctrl", function($scope) {
+        $scope.func = function() {
+            alert("IBM DeveloperWorks");
+        }
+    })
+    .directive("isolateDirective", function() {
+        return {
+            scope: {
+            	/* 引用绑定：
+            	以只读的方式访问父作用域
+            	这种方式的绑定虽然无法修改父作用域的 attr 所设定的函数对象，但是却可以通过执行函数来改变父作用域中某些属性的值，来达到一些预期的效果。
+				
+				key对应标签中的属性
+
+            	*/
+                isolates: '&',
+            },
+            link: function($scope, $element, $attr) {
+                var func = $scope.isolates();
+                func();
+            }
+        };
+    });
+</script>
+
+</html>

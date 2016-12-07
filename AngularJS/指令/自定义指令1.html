@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<my-directive></my-directive>
+
+<script type="text/javascript">
+	/*
+	指令在HTML上为a-b形式，但是在定义的时候是以驼峰的形式
+
+	restrict表示调用指令的位置：元素(E) 属性(A) 类(C) 注释(M)
+	这里使用的为E，表示指令需要为一个元素，就比如是div，span这样的标签元素
+	如果为A，则应该HTML调用应该为<div runoob-directive>
+
+	template 表示我们的指令使用的模版，你会看到，它的值就是我们准备生成的内容。
+
+	replace(布尔):默认false表示显示原来的指令
+	<my-directive>
+		<a href="www.baidu.com">BAIDU</a>
+	</my-directive>
+	如果为true，页面元素则只显示<a href="www.baidu.com">BAIDU</a>
+	*/
+
+	angular.module('myApp',[]).directive('myDirective', function(){
+		return {
+			restrict: "E",
+			template: "<a href='www.baidu.com'>BAIDU</a>",
+			replace: true
+		}
+	});
+</script>
+</body>
+</html>

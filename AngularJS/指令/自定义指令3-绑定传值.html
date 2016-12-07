@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+
+<div my-directive my-url="www.baidu.com" my-link-text="点击"></div>
+
+<script type="text/javascript">
+	angular.module("myApp",[]).directive('myDirective', function(){
+		return {
+			restrict: 'A',
+			replace: true,
+			/*
+			AngularJS为我们指令的scope参数提供了三种选择，
+			false:指令模板中可以直接使用父作用域中的变量，函数
+			true:指令要创建一个新的作用域，这个作用域继承自我们的父作用域
+			{}:创建一个新的与父作用域隔离的新的作用域，这使我们在不知道外部环境的情况下，就可以正常工作，不依赖外部环境。
+
+			@ 或 @attr
+			单向绑定
+
+			=
+			双向绑定
+
+			& 或 @attr
+			引用绑定
+			
+			*/
+			scope: {
+				myUrl: '@',
+				myLinkText: '@'
+			},
+			template: "<a href='{{ myUrl }}'>{{myLinkText}}</a>"
+		}
+	});
+</script>
+</body>
+</html>

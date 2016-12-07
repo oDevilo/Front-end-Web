@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+</head>
+
+<body data-ng-app="isolateScope">
+    <div data-ng-controller="ctrl">
+        <button>{{btns.dw}}</button>
+        <button>{{btns.ibm}}</button>
+        <!-- <div data-isolate-directive data-isolates="btns"></div> -->
+        <div data-isolate-directive data-test="btns"></div>
+        <!-- <div data-isolate-directive data-test="12345"></div> -->
+        <!-- 数字不识别，如果有字母，就会去找$scope下面的对应值 -->
+    </div>
+</body>
+<script>
+/**
+双向绑定，孤立作用域能直接读写父作用域中的属性和数据
+适合一些子directive需频繁和父作用域进行数据交互
+**/
+angular.module('isolateScope', [])
+    .directive("isolateDirective", function() {
+        return {
+            replace: true,
+            template: '<button>{{isolates}}</button>',
+            scope: {
+            	/*
+				key 对应 {{isolates}}
+				= 后面表示对应从html中获取的位置 不写表示isolates和key对应
+				test表示去获取isolate-directive同标签中test中的值，
+				然后赋值给scope中的isolates
+            	*/
+                isolates: '=test'
+            },
+            link: function($scope, $element, $attr) {
+            	alert(2);
+            	/*
+            	这里查看log可以发现这个$scope和下面的$scope有区别
+            	它有两个特别的属性
+            	.$$isolateBindings 这个属性内容和scope里的相似里面有个attrName='isolates'
+            	isolates
+            	这个是一个json
+            		dw :'DeveloperWorks',
+            		ibm:'IBM'
+				是被修改后的值
+            	*/
+            	console.info($scope);
+                $scope.isolates.ibm = "IBM";
+                // 这里的isolates这obj是通过scope来获取的，这里是test，所以isolates为undifinde，如果改成
+                console.log($scope);
+            }
+        };
+    })
+    .controller("ctrl", function($scope) {
+    	alert(1);
+        $scope.btns = {
+            ibm: 'ibm',
+            dw: 'DeveloperWorks'
+        };
+        console.log($scope); // 先调用
+    });
+</script>
+
+</html>

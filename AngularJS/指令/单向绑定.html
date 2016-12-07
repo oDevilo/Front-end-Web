@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+</head>
+
+<body data-ng-app="isolateScope">
+    <div data-ng-controller="ctrl">
+        <button>{{btns}}</button>
+        <div data-isolate-directive></div>
+        <div data-isolate-directive data-test="{{btns}}"></div>
+    </div>
+</body>
+<script>
+angular.module('isolateScope', [])
+    .directive("isolateDirective", function() {
+        return {
+            template: '<button>{{isolates}}</button>',
+            scope: {
+                // 单向绑定，只能以只读的方式访问父作用域
+            	// key 表示{{isolates}} @ 表示单向绑定 后面的值表示值从哪里来,不写表示和前面一样
+                isolates: '@test',
+            },
+            link: function($scope, $element, $attr) {
+                $scope.isolates = "DeveloperWorks";
+            }
+        };
+    })
+    .controller("ctrl", function($scope) {
+        $scope.btns = 'IBM';
+    });
+</script>
+
+</html>
