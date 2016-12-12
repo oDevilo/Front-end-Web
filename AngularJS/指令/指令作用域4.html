@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="MyModule">
+
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <p>当运行页面的时候发现只要有一个input中的输入变化了，这时候所有的内容都会变化</p>
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
+
+    <p>使用隔离作用域，使得每个指令作用域隔离</p>
+    <hello1></hello1>
+    <hello1></hello1>
+    <hello1></hello1>
+    <hello1></hello1>
+</body>
+<script src="../js/angular.min.js"></script>
+<script type="text/javascript">
+var myModule = angular.module("MyModule", []);
+myModule.directive("hello", function() {
+    return {
+        restrict: 'AE',
+        template: '<div><input type="text" ng-model="userName"/>{{userName}}</div>',
+    }
+});
+
+
+myModule.directive("hello1", function() {  
+    return {  
+        restrict: 'AE',  
+        scope:{},  
+        template: '<div><input type="text" ng-model="userName"/>{{userName}}</div>',  
+    }  
+}); 
+</script>
+
+</html>

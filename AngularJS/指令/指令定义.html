@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body ng-app="myApp">
+
+<script type="text/javascript">
+	angular.module('myApp',[]).directive('myDirective',function(){
+		return {
+			/*	可选
+				表明这个指令在DOM中以何种形式被声明
+				E 元素 <my-directive></my-directive>
+				A 属性，默认 <div my-directive="expression"></div>
+				C 类名 <div class="my-directive:expression"></div>
+				M 注释 <-- directive:my-directive expression -->
+			*/
+			restrict:String,
+			/*	可选
+				默认值0，表示指令间执行的顺序
+				例如，ngRepeat将此设置为1000，保证在同一元素上，它在其它指令前执行
+				如果一个元素有两个优先级相同的指令，声明在前面的那个被优先调用
+			*/
+			priority:Number,
+			/*	可选
+				false时，表示告诉AngularJS停止运行当前元素上比本指令优先级低的指令，
+				但与此指令优先级相同的还是会被执行。
+			*/
+			terminal:Boolean,
+			/*	可选
+				必须被设置为以下两种形式之一
+				1.一段HTML文本
+				2.一个可以接收两个参数的函数，参数为tElement和tAttrs，并返回一个代表末班的字符串
+				注意：如果多行需要在每行末尾加一个\
+				template:'\
+						<div> <-- demo -->\
+							<a href="#">Click me</a>\
+						</div>\'
+				在实际生产中，更多选择templateUrl来引用外部模板
+			*/
+			template:String or Template Function:
+				function(tElement, tAttrs) {...},
+			/*	可选
+				1.代表外部HTML文件路径的字符串
+				2.可以接收两个参数tElement和tAttrs的函数，并返回一个外部HTML文件路径的字符串
+			*/
+			templateUrl:String or Template Function:
+				function(tElement, tAttrs) {...},s
+			/*	可选
+				默认false，表示模板会显示在页面上
+			*/
+			replace:Boolean or String,
+			/*	可选 参考指令作用域.html
+				默认false:作用域从父作用域继承，如果指令中改变相对变量，那么指令中和父作用域下的都会改变
+				当为true：作用域会继承父作用域，但是指令中改变变量，不会改变父作用域中的，只改变指令中的
+				{}：隔离作用域 
+				如果一个元素上有多个指令使用隔离作用域，只有指令模板的根元素可以获取一个新的作用域
+				对于这些对象，scope默认被设置为true，如ng-controller的作用就是从父级作用域继承并创建一个新的子作用域
+
+			*/
+			scope:Boolean or Object,
+			/*	可选 默认false  参考嵌入。html
+				嵌入通常用来创建可复用的组件，如模态对话框和导航栏
+			*/
+			transclude:Boolean,
+			/*	可选 
+				字符串：以字符串的值为名字查找注册在应用中的控制器的构造函数
+				function：匿名构造函数来定义内联控制器
+				$scope 与指令元素关联的当前作用域
+				$elemnt 当前指令对应的元素
+				$attrs 当前元素属性组成的对象，如
+					<div id="aDiv" class="box"></div>
+					有如下属性对象{id:"aDiv",class="box"}
+				$transclude 嵌入链接函数会与对应的嵌入作用域进行预绑定
+			*/
+			controller:String or 
+				function(scope,element ,attrs,transclude,otherInjectables){...},
+			/*	可选
+				用来设置控制器别名，可以以此为名发布控制器，并且作用域可以访问controllerAs，这样就能在视图中引用控制器，甚至无需注入$scope
+			*/
+			controllerAs:String,
+			/*	可选
+				字符串代表另一个指令名字，会将控制器注入到其值所指定的指令中，并作为当前指令的链接函数的第四个参数
+
+			*/
+			require:String or Array,
+			/*	可选
+				link: function(scope, ele, attrs) {
+					return {
+						pre: function(iElement,iAttrs,transclude){
+							// 在子元素被链接之前执行
+							// 在这里进行DOM转换不安全
+							// 之后调用'link'函数将无法定位要链接的元素
+						},
+						post: function(iElement,iAttrs,transclude){
+							// 在子元素被链接之后执行
+							// 如果在这里省略掉编译选项
+							// 在这里执行DOM转换和链接函数一样安全吗
+						}
+					}
+				}
+			*/
+			link:function(scope,iElement,iAttrs){...},
+			/*	与link互斥，如果都被使用会将compile所返回的函数当做链接函数
+			*/
+			compile:
+				function(tElemnt,tAttrs,transclude){
+					return {
+						pre:function(scope,iElement,iAttrs,controller){...},
+						post:function(scope,iElement,iAttrs,controller){...}
+					}
+					// 或者
+					return function postLink(...) {...}
+				}
+		}
+	})
+
+</script>
+
+
+</body>
+</html>

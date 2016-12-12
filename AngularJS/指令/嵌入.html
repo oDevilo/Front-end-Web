@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<div sidebox title="Links">
+	<ul>
+		<li>First link</li>
+		<li>Second link</li>
+	</ul>
+</div>
+<div sidebox title="TagCloud">
+	<div class="tagcloud">
+		<a href="">Gssss</a>
+		<a href="">sdfds</a>
+		<a href="">sdfc</a>
+		<a href="">gvnbv</a>
+		<a href="">dfg</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	angular.module('myApp', [])
+	.directive('sidebox', function(){
+		return {
+			restrict: 'EA',
+			scope: {
+				title : '@'
+			},
+			transclude: true,
+			template: '<div class="sidebox">\
+				<div class="content">\
+					<h2 class="header">{{title}}</h2>\
+					<span class="content" ng-transclude></span>\
+				</div></div>'
+		}
+	})
+</script>
+</body>
+</html>

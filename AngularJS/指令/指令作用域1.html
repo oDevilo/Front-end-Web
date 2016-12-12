@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-init="someProperty='Some Data'">
+	<div ng-init="siblingProperty = 'more data'">
+		Inside Div Two : {{aThirdProperty}}
+		<div ng-init="aThirdProperty = 'data for 3rd property'"
+			 ng-controller='SomeController'>
+			Inside div Three: {{aThirdProperty}}
+			<div ng-init="aFourthProperty">
+				Inside Div Four: {{aThirdProperty}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	angular.module('myApp',[])
+		.controller('SomeController', function($scope){
+			
+	})
+</script>
+</body>
+</html>

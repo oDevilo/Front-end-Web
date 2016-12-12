@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-init="someProperty='Some Data'">
+	<div ng-init="siblingProperty = 'more data'">
+		Inside Div Two : {{aThirdProperty}}
+		<div ng-init="aThirdProperty = 'data for 3rd property'"
+			 ng-controller='SomeController'>
+			Inside div Three: {{aThirdProperty}}
+			<div >
+				Inside Div Four: {{aThirdProperty}}
+				<br>
+				Outside myDirective: {{ myProperty }}
+				<div my-directive ng-init="myProperty ='wow, this is cool'">
+					Inside myDirective: {{ myProperty}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	/*
+		隔离作用域
+		主要是为了创建复用的组件，组件可以在位置上下文中使用，并可以避免污染所处的外部作用域或不经意地污染内部作用域
+		创建具有隔离作用域的指令需要将scope属性设置为一个空对象{}，这样指令模板就无法访问外部作用域
+	*/
+	angular.module('myApp',[])
+		.controller('SomeController', function($scope){
+			
+	})
+	// .controller('SecondController', function($scope){
+
+	// })
+	.directive('myDirective', function(){
+		return {
+			restrict: 'A',
+			scope: false
+		}
+	})
+</script>
+</body>
+</html>
