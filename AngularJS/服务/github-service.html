@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ServiceController">
+	<label for="username">
+		Type in a Github username
+	</label>
+	<input type="text" ng-model="username" placeholder="Enter a GitHub username">
+	<ul>
+		<li ng-repeat="event in events">{{event.actor.login}} {{event.repo.name}}</li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	// 注册服务
+	angular.module('myApp.services', [])
+	.factory('githubService', function($http){
+		var githubUrl = 'https://api.github.com';
+		var runUserRequest = function(username, path) {
+			// 从使用JSONP调用Github API的$http服务中心返回promise
+			return $http({
+				method: 'JSONP',
+				url: githubUrl + '/users/' +
+						username + '/' +
+						path + '?callback=JSON_CALLBACK'
+			});
+		};
+		// 返回带有一个events函数的服务对象
+		return {
+			events: function(username) {
+				return runUserRequest(username, 'events');
+			}
+		}
+	});
+
+	// 使用服务
+	angular.module('myApp', ['myApp.services'])
+	.controller('ServiceController', function($scope, githubService) {
+		// username如果变化就调用此方法
+		$scope.$watch('username', function(newUsername) {
+			if (newUsername) {
+				// 如果username在350ms中没有变化则调用
+				if (timeout) $timeout.cancel(timeout);
+				timeout = $timeout(function() {
+					githubService.events(newUsername).success(function(data, status) {
+						// success函数在数据中封装响应
+						$scope.events = data.data;
+					});
+				}, 350);
+			}
+			
+		})
+	}
+</script>
+</body>
+</html>
