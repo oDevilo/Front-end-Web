@@ -10,6 +10,9 @@
 *.iml
 .idea/
 
+# node
+node_modules/
+
 # Others
 target/
 logs/
