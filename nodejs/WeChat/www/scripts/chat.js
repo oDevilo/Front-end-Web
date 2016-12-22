@@ -161,7 +161,7 @@ HiChat.prototype = {
 		    // 将消息中的表情转化为图片
 		    msg = this._showEmoji(msg);
 		msgToDisplay.style.color = color || '#000';
-		msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
+		msgToDisplay.innerHTML = user + '<span class="timespan"> (' + date + '): </span>' + msg;
         container.appendChild(msgToDisplay); // 显示信息
         container.scrollTop = container.scrollHeight;
 	},
@@ -171,7 +171,7 @@ HiChat.prototype = {
 	        msgToDisplay = document.createElement('p'),
 	        date = new Date().toTimeString().substr(0, 8);
 	    msgToDisplay.style.color = color || '#000';
-	    msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
+	    msgToDisplay.innerHTML = user + '<span class="timespan"> (' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '"/></a>';
 	    container.appendChild(msgToDisplay);
 	    container.scrollTop = container.scrollHeight;
 	},

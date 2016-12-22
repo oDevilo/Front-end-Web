@@ -20,7 +20,8 @@ server.listen(8888);
 console.log("server started");
 
 console.log("读取所有表情");
-fs.readdir("www/emoji/",function(err, files){
+// fs.readdir("www/emoji/",function(err, files){
+fs.readdir(__dirname + "/www/emoji/",function(err, files){
     if (err) {
         return console.error(err);
     }

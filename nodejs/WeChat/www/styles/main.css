@@ -10,7 +10,7 @@ body {
     height: 640px;
     padding: 5px;
     margin: 0 auto;
-    background-color: #ddd;
+    background-color: #98E165;
 }
 
 #loginWrapper {
@@ -58,7 +58,7 @@ body {
 }
 
 .timespan {
-    color: #ddd;
+    color: #AAAAAA;
 }
 
 .items {
