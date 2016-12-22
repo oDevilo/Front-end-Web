@@ -12,43 +12,54 @@ var HiChat = function() {
 // 向原型添加业务方法
 HiChat.prototype = {
 	init: function() { // 此方法初始化程序
-		var _this = this;
+		var _this = this,
+		    myEmojis = [];
 		this.socket = io.connect(); // 与服务器进行连接
 		// 监听socket的connect事件，此事件表示连接已经建立
 		this.socket.on('connect', function() {
 			//连接到服务器后，显示昵称输入框
-			document.getElementById('info').textContent = 'get yourself a nickname :)';
+			document.getElementById('info').textContent = '请输入您的用户名:)';
             document.getElementById('nickWrapper').style.display = 'block';
             document.getElementById('nicknameInput').focus();
 		});
+		this.socket.on('disconnect', function(socket) {
+			alert("与服务器断开连接......");
+			_this.socket.disconnect();
+		});
+
 		this.socket.on('nickExisted', function() {
 			document.getElementById('info').textContent = '此昵称已被注册，请重新输入';
 		});
 		// 如果昵称没有被使用，则将昵称加入users，同事将其作为一个属性保存到socket变量
 		this.socket.on('loginSuccess', function() {
-		    document.title = 'hichat | ' + document.getElementById('nicknameInput').value;
+		    document.title = 'WeChat | ' + document.getElementById('nicknameInput').value;
 		    document.getElementById('loginWrapper').style.display = 'none';//隐藏遮罩层显聊天界面
 		    document.getElementById('messageInput').focus();//让消息输入框获得焦点
  		});
  		// 接收system事件
  		this.socket.on('system', function(nickName, userCount, type){
  			// 判断用户是连接还是离开，以显示不同信息
- 			var msg = nickName +"  " + (type == 'login' ? 'joined':'left');
+ 			var msg = nickName +"  " + (type == 'login' ? '加入':'离开');
  			//指定系统消息显示为红色
  			_this._displayNewMsg('system', msg, 'red');
  			// 将在线人数显示到页面顶部
- 			document.getElementById('status').textContent = userCount
- 				+ (userCount > 1 ? 'users':'user') + 'online';
+ 			document.getElementById('status').textContent = "在线用户数：" + userCount;
  		});
  		// 接收新消息
- 		this.socket.on('newMsg', function(user, msg) {
+ 		this.socket.on('newMsg', function(user, msg, color) {
 		    _this._displayNewMsg(user, msg, color);
 		});
 		// 接收图片
-		this.socket.on('newImg', function(user,img) {
+		this.socket.on('newImg', function(user, img) {
 			_this._displayImage(user, img);
 		});
-
+		// 初始化表情
+		this.socket.on('emojis', function(user, emojis) {
+			myEmojis = []; // 防止同一浏览器，图片重复显示
+			emojis.forEach(function(emoji){
+				myEmojis.push(emoji);
+			});
+		});
 
  		// 点击登录的事件
  		document.getElementById("loginBtn").addEventListener('click', function(){
@@ -71,8 +82,8 @@ HiChat.prototype = {
 		    messageInput.value = '';
 		    messageInput.focus();
 		    if (msg.trim().length != 0) {
-		        _this.socket.emit('postMsg', msg, color); //把消息发送到服务器
-		        _this._displayNewMsg('me', msg, color); //把自己的消息显示到自己的窗口中
+		        _this.socket.emit('postMsg', msg, color); // 把消息发送到服务器
+		        _this._displayNewMsg('me', msg, color);   // 把自己的消息显示到自己的窗口中
 		    };
 		}, false);
 		// 发送图片
@@ -97,9 +108,11 @@ HiChat.prototype = {
 		    };
 		}, false);
 
-		// 初始化表情
-		this._initialEmoji();
+		
+		// 表情按钮点击
 		document.getElementById('emoji').addEventListener('click', function(e) {
+			// 加载表情
+			_this._initialEmoji(myEmojis);
 		    var emojiwrapper = document.getElementById('emojiWrapper');
 		    emojiwrapper.style.display = 'block';
 		    e.stopPropagation();
@@ -140,7 +153,7 @@ HiChat.prototype = {
 	        };
 	    }, false);
 	},
-
+	// 展示信息
 	_displayNewMsg: function(user, msg, color) {
 		var container = document.getElementById('historyMsg'),
 		    msgToDisplay =document.createElement('p'),
@@ -152,7 +165,7 @@ HiChat.prototype = {
         container.appendChild(msgToDisplay); // 显示信息
         container.scrollTop = container.scrollHeight;
 	},
-
+	// 展示图片
 	_displayImage: function(user, imgData, color) {
 	    var container = document.getElementById('historyMsg'),
 	        msgToDisplay = document.createElement('p'),
@@ -162,31 +175,32 @@ HiChat.prototype = {
 	    container.appendChild(msgToDisplay);
 	    container.scrollTop = container.scrollHeight;
 	},
-
-	_initialEmoji: function() {
+	// 加载表情
+	_initialEmoji: function(myEmojis) {
 	    var emojiContainer = document.getElementById('emojiWrapper'),
 	        docFragment = document.createDocumentFragment();
-	    for (var i = 69; i > 0; i--) {
+	    emojiContainer.innerHTML = ''; // 先清空原来的内容，重新加载
+	    for (var i = 0; i < myEmojis.length; i++) {
 	        var emojiItem = document.createElement('img');
-	        emojiItem.src = '../content/emoji/' + i + '.gif';
-	        emojiItem.title = i;
+	        emojiItem.src = '../emoji/' + myEmojis[i];
+	        emojiItem.title = myEmojis[i];
 	        docFragment.appendChild(emojiItem);
 	    };
 	    emojiContainer.appendChild(docFragment);
 	},
-
+	// 展示表情
 	_showEmoji: function(msg) {
 	    var match, result = msg,
-	        reg = /\[emoji:\d+\]/g,
-	        emojiIndex,
+	        reg = /^(\[emoji:)[\w\W]*(\])$/g, // 匹配以[emoji: ]结尾的字符串 不能用 ' ' 要用/ /
 	        totalEmojiNum = document.getElementById('emojiWrapper').children.length;
 	    while (match = reg.exec(msg)) {
-	        emojiIndex = match[0].slice(7, -1);
-	        if (emojiIndex > totalEmojiNum) {
-	            result = result.replace(match[0], '[X]');
-	        } else {
-	            result = result.replace(match[0], '<img class="emoji" src="../content/emoji/' + emojiIndex + '.gif" />');
-	        };
+	        var emoji = match[0].slice(7, -1);
+	        result = result.replace(match[0], '<img class="emoji" src="../emoji/' + emoji + '" />');
+	        // if (emoji > totalEmojiNum) {
+	        //     result = result.replace(match[0], '[X]');
+	        // } else {
+	        //     result = result.replace(match[0], '<img class="emoji" src="../emoji/' + emojiIndex + '" />');
+	        // };
 	    };
 	    return result;
 	}
