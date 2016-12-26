@@ -16,5 +16,3 @@ node_modules/
 # Others
 target/
 logs/
-cache/*.*
-cache1/
