@@ -61,6 +61,7 @@ HiChat.prototype = {
 			});
 		});
 
+
  		// 点击登录的事件
  		document.getElementById("loginBtn").addEventListener('click', function(){
 			var nickName = document.getElementById('nicknameInput').value;
@@ -73,6 +74,8 @@ HiChat.prototype = {
 				document.getElementById('nicknameInput').focus();
 			}
 		}, false);
+
+
 		// 点击发送的事件
 		document.getElementById('sendBtn').addEventListener('click', function() {
 		    var messageInput = document.getElementById('messageInput'),
@@ -86,6 +89,8 @@ HiChat.prototype = {
 		        _this._displayNewMsg('me', msg, color);   // 把自己的消息显示到自己的窗口中
 		    };
 		}, false);
+
+
 		// 发送图片
 		document.getElementById('sendImage').addEventListener('change', function() {
 	    //检查是否有文件被选中
@@ -133,6 +138,7 @@ HiChat.prototype = {
 		    };
 		}, false);
 
+
 		// 按键操作--回车发送信息
 		document.getElementById('nicknameInput').addEventListener('keyup', function(e) {
 		    if (e.keyCode == 13) {
@@ -152,6 +158,12 @@ HiChat.prototype = {
 	            _this._displayNewMsg('me', msg, color);
 	        };
 	    }, false);
+
+
+	    document.getElementById('clearBtn').addEventListener('click', function(e) {
+	    	var container = document.getElementById('historyMsg');
+	    	container.innerHTML = '';
+	    });
 	},
 	// 展示信息
 	_displayNewMsg: function(user, msg, color) {
