@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<h1>overflow</h1>
+<h1 style="color: brown;">visible</h1>
+<p>默认值。内容不会被修剪，会呈现在元素框之外。</p>
+<div style="background-color:#00FFFF;width:150px;height:150px;overflow: visible;">
+这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。默认值是 visible。
+</div>
+
+<h1 style="color: brown;">hidden</h1>
+<p>内容会被修剪，并且其余内容是不可见的。</p>
+<div style="background-color:#00FFFF;width:150px;height:150px;overflow: hidden;">
+这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。默认值是 visible。
+</div>
+
+<h1 style="color: brown;">scroll</h1>
+<p>内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</p>
+<div style="background-color:#00FFFF;width:150px;height:150px;overflow: scroll">
+这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。默认值是 visible。
+</div>
+
+<h1 style="color: brown;">auto</h1>
+<p>如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。</p>
+<div style="background-color:#00FFFF;width:150px;height:150px;overflow: auto;">
+这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。默认值是 visible。
+</div>
+
+<h1 style="color: brown;">inherit</h1>
+<p>规定应该从父元素继承 overflow 属性的值。</p>
+
+
+</body>
+</html>
