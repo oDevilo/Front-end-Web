@@ -4,28 +4,6 @@
 	<meta charset="utf-8">
 	<title></title>
 	<style type="text/css">
-		h1 {
-			color: silver;
-		}
-		/** 分组选择符 */
-		h2, h3 {
-			color: red;
-		}
-		/** 分组声明 */
-		h1 {
-			background: aqua;
-		}
-
-		/** 类选择符 */
-		.warning {
-			font-weight: bold;
-			color: green;
-		}
-		/** 只对p的warning有效，和上面冲突的时候根据特殊性选择 */
-		p.warning {
-			color: red;
-		}
-
 		/** 			特殊性
 			p{color:red;} 权值为1
 			p span{color:green;} 权值为1+1=2
@@ -48,11 +26,7 @@
 			color: blue;
 		}
 
-		/** 上下文选择器
-			只对h1下em元素有效 */
-		h1 em {
-			color: red;
-		}
+		
 
 		/** 继承 如果颜色应用于h4，那么h4子元素的文本也会继承
 			部分属性也是不能继承的，如border
@@ -60,20 +34,7 @@
 		h4 {
 			color: red;
 		}
-		/** 伪类 用于向某些选择器添加特殊的效果 */
-		a:link {color: red;} /* 未访问的链接 */
-		a:visited {color: green;} /* 已访问的链接 */
-		a:hover {color: aqua;} /** 至于上方时 */
-		a:active {color: brown;}/** 点击时 */
-
-		/** 伪元素 向某些选择器设置特殊效果 */
-		/* 属性	         描述	                           CSS
-		:first-letter	向文本的第一个字母添加特殊样式。	1
-		:first-line	    向文本的首行添加特殊样式。	        1
-		:before	        在元素之前添加内容。	            2
-		:after	        在元素之后添加内容。	            2 */
-		/** 在h5前插入图片,前面也可以用iD选择器或类选择器等 */
-		h5:before {content:url(logo.png);}
+		
 
 
 		/** 重要性 !important 

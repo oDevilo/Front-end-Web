@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		/** 类选择符 */
+		.warning {
+			font-weight: bold;
+			color: green;
+		}
+
+		/** ID选择符 */
+		#myID {
+			background-color: gray;
+		}
+
+		/* 派生选择符-包含选择符，后代选择符
+			对于p 下的所有strong 都起作用 */
+		p strong {
+			color: #FF0000;
+			font-size: 18px;
+		}
+
+		/** 子选择符，必须为其子对象才起作用 */
+		body > strong {
+			color: blue;
+		}
+
+		/** 相邻选择符，匹配同一父级下某元素之后的元素，这里是a后面的strong */
+		a + strong {
+			color: red;
+		}
+
+		/** 属性选择符 */
+		strong[class] {
+			color: pink;
+		}
+		p[class="val"] {
+			color: pink;
+		}
+
+		/** 通配选择符，对页面所有元素起作用 */
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		/** 组合选择符 */
+		p.info {
+			font-size: 20px;
+			background: gray;
+		}
+
+		/** 分组选择符,可以将多个重复的，合并起来定义 */
+		h2, h3 {
+			color: purple;
+		}
+	</style>
+<body>
+<p class="warning">类选择符</p>
+<hr/>
+
+<p id="myID">ID选择符</p>
+<hr/>
+
+<p>
+	<p><strong>派生选择符</strong></p>
+</p>
+<hr/>
+
+<strong>子选择符</strong>
+<hr/>
+
+<a>相邻选择器---<strong>这是a中的strong内容</strong></a>
+<strong>相邻选择器</strong>
+<strong>非相邻了相邻选择器</strong>
+<hr/>
+
+<strong class="">属性选择符</strong>
+<p class="val">属性选择符</p>
+<hr/>
+
+<p class="info">组合选择符 p 下class为 info 的</p>
+<hr/>
+
+<h2>分组选择符</h2>
+<h3>分组选择符</h3>
+<hr/>
+
+</body>
+</html>

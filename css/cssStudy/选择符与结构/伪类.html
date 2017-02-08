@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		/** 伪类 用于向某些选择器添加特殊的效果，定义如下：
+			选择符:伪类 {属性:属性值;} */
+		a:link {color: red;} /* 未访问的链接 */
+		a:visited {color: green;} /* 已访问的链接 */
+		a:hover {color: aqua;} /** 至于上方时 */
+		a:active {color: brown;}/** 点击时 */
+
+		/** 伪元素 向某些选择器设置特殊效果 */
+		/* 属性	         描述	                           CSS
+		:first-letter	向文本的第一个字母添加特殊样式。	1
+		:first-line	    向文本的首行添加特殊样式。	        1
+		:before	        在元素之前添加内容。	            2
+		:after	        在元素之后添加内容。	            2 */
+		/** 在h5前插入图片,前面也可以用iD选择器或类选择器等 */
+		h5:before {content:url(logo.png);}
+	</style>
+</head>
+<body>
+<a href="">伪类测试</a>
+<hr/>
+
+<h5>伪元素</h5>
+
+</body>
+</html>
