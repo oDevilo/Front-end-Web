@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#header, #footer {
+			width: 960px;
+			height: 30px;
+			background-color: #E8E8E8;
+		}
+
+		/** 上下margin 10px 左右为0px*/
+		#container {
+			width: 960px;
+			/*height: 250px;*/
+			margin: 10px 0; 
+		}
+
+		.mainBox {
+			float: right;
+			width: 680px;
+			/*height: 250px;*/
+			color: gray;
+			background-color: #333333;
+		}
+
+		.sideBox {
+			float: left;
+			width: 270px;
+			/*height: 250px;*/
+			color: #FFFFFF;
+			background-color: #999999;
+		}
+
+		/** clear 属性规定元素的哪一侧不允许其他浮动元素，这里是两侧 */
+		/*#footer {
+			clear: both;
+		}*/
+
+		#container:after {
+			display: block;
+			visibility: hidden;
+			font-size: 0;
+			line-height: 0;
+			clear: both;
+			content: "";
+		}
+	</style>
+</head>
+<body>
+<div id="header">头部信息</div>
+<div id="container">
+	<div class="mainBox">
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+		<h1>主要内容区域</h1>
+	</div>
+	<div class="sideBox">侧边栏</div>
+</div>
+<div id="footer">底部信息</div>
+</body>
+</html>

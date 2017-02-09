@@ -4,10 +4,54 @@
 	<meta charset="utf-8">
 	<title></title>
 	<style type="text/css">
-		
+		/** 层叠性(覆盖)，后面的属性会覆盖前面的属性 */
+		p {
+			color: red;
+		}
+
+		p {
+			color: blue;
+		}
+
+		/** 继承，从父元素获取属性 */
+		div {
+			font-size: 50px;
+		}
+
+		/** 优先级顺序：
+			1.标有!important关键字声明的属性，通过继承的!important 权值也是0，所以会被其他属性替换
+			2.HTML中的CSS样式
+			3.作者编辑的CSS文件样式
+			4.用户设置的样式
+			5.浏览器默认样式
+			
+			权重值：
+			1.标签选择符、伪类和伪元素：1
+			2.类选择符、属性选择符：10
+			3.ID选择符：100
+			4.style：1000
+			5.其他选择符，如通配选择符：0
+
+			p{color:red;} 权值为1
+			p span{color:green;} 权值为1+1=2
+			.warning{color:white;} 权值为10
+			p span.warning{color:purple;} 权值为1+1+10=12
+			#footer {color:red;} 权值为100
+			#footer .note p{color:yellow;} 权值为100+10+1=111
+		 */
+
 	</style>
 </head>
 <body>
+<p>覆盖：我是什么颜色</p>
+<hr/>
+
+<strong>我要没继承父元素的属性</strong>
+<div>
+	<strong>我要继承父元素的属性</strong>
+</div>
+<hr/>
+
 
 </body>
 </html>
