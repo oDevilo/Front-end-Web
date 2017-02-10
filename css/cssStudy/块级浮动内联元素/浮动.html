@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		/** 第一部分，排列顺序问题 */
+		.float_left, .float_right {
+			width: 100%;
+			height: 100px;
+			margin-bottom: 10px;
+		}
+
+		.float_left div, .float_right div {
+			width: 80px;
+			height: 80px;
+			padding: 10px;
+			border:1px dashed #999999;
+		}
+
+		.float_left div {
+			float: left;
+			background-color: #F8F8F8;
+		}
+
+		.float_right div {
+			float: right;
+			background-color: #DCDCDC;
+		}
+
+		/** 消除浮动 */
+		.left_two {
+			float: left;
+			width: 200px;
+			height: 100px;
+			background-color: #DCDCDC;
+		}
+		.right_two {
+			float: right;
+			width: 200px;
+			height: 100px;
+			color: #FFFFFF;
+			background-color: #333333;
+		}
+
+		.other_two {
+			background-color: #AAAAAA;
+		}
+	</style>
+</head>
+<body>
+<h1>注意下面的排列顺序</h1>
+<div class="float_left">
+	<div>float_left 1</div>
+	<div>float_left 2</div>
+	<div>float_left 3</div>
+</div>
+
+<div class="float_right">
+	<div>float_right 1</div>
+	<div>float_right 2</div>
+	<div>float_right 3</div>
+</div>
+<hr/>
+
+<h1>消除浮动</h1>
+<div style="clear: both;">
+	<h2>普通情况</h2>
+	<div class="left_two">左浮动元素</div>
+	<div class="right_two">右浮动元素</div>
+</div>
+<div style="clear: both;">
+	<h2>调换代码位置，显示情况不变</h2>
+	<div class="right_two">右浮动元素</div>
+	<div class="left_two">左浮动元素</div>
+</div>
+<div style="clear: both;">
+	<h2>增加没有浮动效果的div元素，其下方元素会重新换行</h2>
+	<div class="left_two">左浮动元素</div>
+	<div class="other_two">又跑来一个元素</div>
+	<div class="right_two">右浮动元素</div>
+</div>
+<div style="clear: both;">
+	<h2>增加没有浮动效果的div元素，其下方元素会重新换行</h2>
+	<div class="other_two">又跑来一个元素</div>
+	<div class="left_two">左浮动元素</div>
+	<div class="right_two">右浮动元素</div>
+</div>
+<div style="clear: both;">
+	<h2>增加没有浮动效果的div元素，其下方元素会重新换行</h2>
+	<div class="left_two">左浮动元素</div>
+	<div class="right_two">右浮动元素</div>
+	<div class="other_two">又跑来一个元素</div>
+</div>
+
+<div style="clear: both;">
+	<h2>清除浮动</h2>
+	<div class="left_two">左浮动元素</div>
+	<div class="right_two">右浮动元素</div>
+	<div class="other_two" style="clear: both;">又跑来一个元素</div>
+</div>
+
+</body>
+</html>
