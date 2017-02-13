@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="require.js"></script>
+	<script src='index.js'></script>
+</head>
+<body>
+<div id="qrcodeDefault">
+</div>
+
+<script type="text/javascript">
+	var qrnode = new qrcode({
+	text: 'http://www.alipay.com/'
+});
+document.getElementById('qrcodeDefault').appendChild(qrnode);
+</script>
+</body>
+</html>

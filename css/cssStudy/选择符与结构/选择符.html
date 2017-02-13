@@ -15,8 +15,9 @@
 			background-color: gray;
 		}
 
-		/* 派生选择符-包含选择符，后代选择符
-			对于p 下的所有strong 都起作用 */
+		/* 派生选择符，包含选择符，后代选择符
+			对于p 下的所有strong 都起作用
+			如：p p strong也会包含 */
 		p strong {
 			color: #FF0000;
 			font-size: 18px;
@@ -27,9 +28,14 @@
 			color: blue;
 		}
 
-		/** 相邻选择符，匹配同一父级下某元素之后的元素，这里是a后面的strong */
+		/** 相邻兄弟选择符，匹配同一父级下某元素之后的元素（仅相邻），这里是a后面的strong */
 		a + strong {
 			color: red;
+		}
+
+		/** 一般兄弟选择符，匹配同一个父元素下某元素后的所有 */
+		div ~ strong {
+			color: green;
 		}
 
 		/** 属性选择符 */
@@ -72,9 +78,14 @@
 <strong>子选择符</strong>
 <hr/>
 
-<a>相邻选择器---<strong>这是a中的strong内容</strong></a>
-<strong>相邻选择器</strong>
-<strong>非相邻了相邻选择器</strong>
+<a>相邻兄弟选择器---<strong>这是a中的strong内容</strong></a>
+<strong>相邻兄弟选择器</strong>
+<strong>非相邻了相邻兄弟选择器</strong>
+<hr/>
+
+<div></div>
+<strong>一般兄弟选择符</strong>
+<strong>一般兄弟选择符</strong>
 <hr/>
 
 <strong class="">属性选择符</strong>
