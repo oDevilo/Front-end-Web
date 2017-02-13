@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		/** 虚线边框 */
+		#myCanvas {
+			border: dotted 2px black;
+			margin: 0px 20px;
+		}
+	</style>
+</head>
+<body>
+<h1>使用 node 搭建服务，否则存在跨域问题</h1>
+<canvas id="myCanvas" width="200" height="200">
+	Sorry! your browser doesnet support canvas.
+	只在浏览器不支持canvas的时候出现
+</canvas>
+
+<video src="movie.ogg" controls="controls" id="video">
+您的浏览器不支持 video 标签。
+</video>
+
+<script type="text/javascript">
+	window.onload = function() {
+		makeVideoOldTimey(); // 将页面图片绘制到画布
+
+	}
+
+	function makeVideoOldTimey() {
+		var video = document.getElementById("video");
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		context.fillText("点击播放，画布展示黑白图片", 10, 20);
+		video.addEventListener("play", function() {
+			draw(video, context, canvas);
+		}, false);
+	}
+
+	function draw(video, context, canvas) {
+		if (video.paused || video.ended) {
+			return false;
+		}
+
+		var status = drawOneFrame(video, context, canvas);
+		if (status == false) {
+			return false;
+		}
+		setTimeout(function() {
+			draw(video, context, canvas);
+		}, 0);
+	}
+
+	// 将图像转成黑白的展示出来
+	function drawOneFrame(video, context, canvas) {
+		context.drawImage(video, 0, 0, canvas.width, canvas.height); 
+
+		try{
+			// getImageData对应我们检测画布的矩形画布的4个角
+			var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+			var pixelData = imageData.data;
+
+			// 转换图像灰度
+			for (var i = 0; i < pixelData.length; i += 4) {
+				var red = pixelData[i];
+				var green = pixelData[i + 1];
+				var blue = pixelData[i + 2];
+
+				var grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+
+				pixelData[i] = grayscale;
+				pixelData[i + 1] = grayscale;
+				pixelData[i + 2] = grayscale;
+			}
+			imageData.data = pixelData;
+
+			context.putImageData(imageData, 0, 0);
+		} catch (err) {
+			console.log(err);
+			canvas.width = canvas.width;
+			canvas.style.backgroundColor = "transparent";
+			context.fillStyle = "white";
+			context.textAlign = "left";
+			context.font = "18px LeagueGothic, Tahoma, Geneva, sans-serif"
+			context.fillText("显示错误", 10, 20);
+			context.fillText("video 到 canvas", 10, 40);
+			context.fillText("显示错误", 10, 70);
+			context.fillText("video 到 canvas", 10, 90);
+			context.fillText("显示错误", 10, 130);
+			return false;
+		}
+		
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		/** 虚线边框 */
+		#myCanvas {
+			border: dotted 2px black;
+		}
+	</style>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500">
+	Sorry! your browser doesnet support canvas.
+	只在浏览器不支持canvas的时候出现
+</canvas>
+
+<script type="text/javascript">
+	window.onload= function() {
+		var canvas = document.getElementById("myCanvas"); // 获取画布
+		var context = canvas.getContext("2d"); // 获取CanvasRenderingContext2D对象
+
+		draw(context);		   // 颜色填充
+		drawImg(context);	   // 图片填充
+		drawGradient(context); // 渐变
+		drawCircle(context);   // 画圆形
+	}
+
+	function draw(context) {
+		context.strokeStyle = "red";
+		context.fillStyle = "rgba(0, 0, 255, 0.5)";
+
+		context.fillRect(10, 10, 100, 100);
+		context.strokeRect(10, 10, 100, 100);
+	}
+
+	function drawImg(context) {
+		// 使用图片填充
+		var img = new Image();
+		img.src = "logo.png";
+		img.onload = function() {
+			pattern = context.createPattern(img, "repeat");
+			context.fillStyle = pattern;
+			context.fillRect(120, 10, 100, 100);
+			context.strokeRect(120, 10, 100, 100);
+		}
+	}
+
+	function drawGradient(context) {
+		var gradient = context.createLinearGradient(0, 0, 0, 200);
+		gradient.addColorStop(0, "blue");
+		gradient.addColorStop(1, "white");
+		context.fillStyle = gradient;
+		context.fillRect(230, 10, 100, 100);
+		context.strokeRect(230, 10, 100, 100);
+	}
+
+	function drawCircle(context) {
+		context.beginPath();
+		/** 
+			arc(x, y, radius, startAangle, endAangle, anticlockwise);
+			x,y为弧线路径起始位置，将它设想为圆心
+			radius为半径
+			startAangle，endAangle表示延圆周的开始和结束角度，单位弧度
+			anticlockwise，可选，如果逆时针而不是顺时针则为true
+		 */
+		context.arc(400, 60, 50, 0, Math.PI*2, true);
+		context.closePath();
+		context.strokeStyle = "red";
+		context.fillStyle = "blue";
+		context.lineWidth = 3;
+		context.fill(); // 填充路径
+		context.stroke();	// 描边
+	}
+</script>
+</body>
+</html>

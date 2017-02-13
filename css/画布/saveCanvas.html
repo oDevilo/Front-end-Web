@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500">
+	Sorry! your browser doesnet support canvas.
+	只在浏览器不支持canvas的时候出现
+</canvas>
+<form>
+	<input type="button" name="saveButton" id="saveButton" value="点击弹出图片" onclick="saveDrawing()">
+</form>
+
+<script type="text/javascript">
+	window.onload = function() {
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		drawCircle(context);   // 画圆形
+		// document.getElementById("saveButton").click(saveDrawing(canvas));
+		
+	}
+
+	function saveDrawing() {
+		var canvas = document.getElementById("myCanvas");
+		window.open(canvas.toDataURL("image/png"));
+	}
+
+	function drawCircle(context) {
+		context.beginPath();
+		context.arc(400, 60, 50, 0, Math.PI*2, true);
+		context.closePath();
+		context.strokeStyle = "red";
+		context.fillStyle = "blue";
+		context.lineWidth = 3;
+		context.fill(); // 填充路径
+		context.stroke();	// 描边
+	}
+</script>
+</body>
+</html>
